@@ -67,6 +67,10 @@ Route::group(['middleware' => ['auth:api','customer']], function() {
         Route::post("/user","UserController@insert");
         Route::put('/user/{id}',"UserController@update");
         Route::delete('/user/{id}', "UserController@delete");
+        Route::post("/order","OrderController@index");
+        Route::put("/order","OrderController@update");
+        Route::delete("/order/{id}","OrderController@delete");
+        Route::get("/orderdetail/{id}","OrderController@getdetailorder");
            });
 
 Route::group(['middleware' => ['auth:api','employee']], function() {
@@ -82,5 +86,6 @@ Route::group(['middleware' => ['auth:api','employee']], function() {
         Route::post("/catagory","CatagoryController@insert");
         Route::put('/catagory/{id}',"CatagoryController@update");
         Route::delete('/catagory/{id}', "CatagoryController@delete");
+        Route::delete("/order/{id}","OrderController@delete");
   
              });
