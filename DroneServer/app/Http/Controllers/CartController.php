@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Cart;
 use App\Model\CartDetail;
+use App\Model\Product;
 use Validator;
 class CartController extends Controller
 {
@@ -57,4 +58,19 @@ class CartController extends Controller
        return $cartdetail;    
    
     }
+
+     public function gettotal($id)
+     {
+      $cartdetails = new CartDetail();
+      $cartdetails = CartDetail::where('gio_hang_id',$id)->get();
+      $totals =0;
+     foreach($cartdetails as $cartdetail)
+    { 
+       $product = new Product();
+       $product = Product::findOrFail($cartdetail->id);
+       $totals +=  ($cartdetail->so_luong)*($product->don_gia)*($product->sale);
+    }
+    return response()->json(['totals'=>$totals], 200); 
+     } 
+
 }

@@ -80,4 +80,13 @@ class ProductController extends BaseController
        return response()->json(['sucess'=>'Product deleted sucessfully']);
       
     }   
+
+    public function price($id)
+    {
+       $product = new Product();
+       $product = Product::findOrFail($id);
+       $prices = $product->don_gia*$product->sale;
+       return response()->json( $prices);
+      
+    }  
 }

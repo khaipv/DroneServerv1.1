@@ -30,8 +30,7 @@ Route::get("/product","ProductController@index");
 
 Route::get("/store","StoreController@index");
 
-Route::get("/catagory","CatagoryController@index");
-//cart    
+Route::get("/catagory","CatagoryController@index");   
 
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login');
@@ -67,9 +66,16 @@ Route::group(['middleware' => ['auth:api','customer']], function() {
         Route::post("/user","UserController@insert");
         Route::put('/user/{id}',"UserController@update");
         Route::delete('/user/{id}', "UserController@delete");
+        Route::post("/order","OrderController@index");
+        Route::put("/order","OrderController@update");
+        Route::delete("/order/{id}","OrderController@delete");
+        Route::get("/orderdetail/{id}","OrderController@getdetailorder");
+        Route::post("/test","TestController@insert");
+        Route::get("/total/{id}","CartController@gettotal"); 
            });
 
 Route::group(['middleware' => ['auth:api','employee']], function() {
+        Route::get("/prices/{id}","ProductController@price");  
         Route::get("/order","OrderController@index");
         Route::get('user', 'AuthController@user');
         Route::post("/product","ProductController@insert");
@@ -82,5 +88,14 @@ Route::group(['middleware' => ['auth:api','employee']], function() {
         Route::post("/catagory","CatagoryController@insert");
         Route::put('/catagory/{id}',"CatagoryController@update");
         Route::delete('/catagory/{id}', "CatagoryController@delete");
+        Route::delete("/order/{id}","OrderController@delete");
+        Route::post("/test","TestController@insert");
+        Route::put('/test/{id}',"TestController@update");
+        Route::delete('/test/{id}', "TestController@delete");
+        Route::get("/testdetail","TestController@gettestdetail");
+        Route::post("/testdetail","TestController@insertdetail");
+        Route::put('/testdetail/{id}',"TestController@updatedetail");
+        Route::delete('/testdetail/{id}', "TestController@deletedetail");
+       
   
              });
