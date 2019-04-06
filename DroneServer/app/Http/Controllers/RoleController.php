@@ -3,16 +3,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Role;
+use Illuminate\Pagination\Paginator;
 use Validator;
-class RoleController extends Controller
+use App\Http\Controllers\BaseController as BaseController;
+class RoleController extends BaseController
 {
-    public function index()
+        
+    public function index($page,$limit)
     {      
-       $maxResults = 5;    
-       Role::jsonPaginate($maxResults);
-       $roles = Role::all();
-       return $this->sendResponse($roles->toArray(), 'Roles retrieved successfully.'); 
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $roles = Role::paginate($limit);
+     $role = $roles->toArray();
+     $result['total'] = $roles->total();
+     $result['page'] = $roles->currentPage();
+     $result['pageSize'] = $roles->perPage();
+     $result['data']=$role['data'];
+     return $this->sendResponse($result, 'Roles retrieved successfully.');
+   
     }
+    
 
     public function insert(Request $request)
     {         

@@ -5,15 +5,37 @@ use Illuminate\Http\Request;
 use App\Model\Order;
 use Validator;
 use App\Model\OrderDetail;
+use Illuminate\Pagination\Paginator;
 use App\Http\Controllers\BaseController as BaseController;
 class OrderController extends BaseController
 {
-    public function index()
+       
+      public function index($page,$limit)
     {      
-       $maxResults = 5;    
-       Order::jsonPaginate($maxResults);
-       $orders = Order::all();
-       return $this->sendResponse($orders->toArray(), 'Oders retrieved successfully.'); 
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $orders = Order::paginate($limit);
+     $order = $orders->toArray();
+     $result['total'] = $orders->total();
+     $result['page'] = $orders->currentPage();
+     $result['pageSize'] = $orders->perPage();
+     $result['data']=$order['data'];
+       return $this->sendResponse($result, 'Orders retrieved successfully.'); 
+    }
+
+    public function indexuser($id,$page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $orders = Order::where('nguoi_dung_id',$id)->paginate($limit); 
+     $order = $orders->toArray();
+     $result['total'] = $orders->total();
+     $result['page'] = $orders->currentPage();
+     $result['pageSize'] = $orders->perPage();
+     $result['data']=$order['data'];
+       return $this->sendResponse($result, 'Orders retrieved successfully.'); 
     }
 
    
@@ -58,10 +80,19 @@ class OrderController extends BaseController
       
     }  
     
-    public function getdetailorder($id)
-    {      
-       $orderdetail= OrderDetail::all()->where('don_hang_id',$id) ;
-       return $orderdetail;    
+  
+    public function getdetailorder($id,$page,$limit)
+    {     
+      Paginator::currentPageResolver(function() use ($page) {
+         return $page;
+     });
+  $orderdetail= OrderDetail::where('don_hang_id',$id)->paginate($limit);
+  $order = $orderdetail->toArray();
+  $result['total'] = $orderdetail->total();
+  $result['page'] = $orderdetail->currentPage();
+  $result['pageSize'] = $orderdetail->perPage();
+  $result['data']=$order['data'];
+  return $this->sendResponse($result, 'OrderDetails retrieved successfully.');   
    
     }
 }

@@ -5,15 +5,22 @@ use Illuminate\Http\Request;
 use App\Model\Test;
 use Validator;
 use App\Model\TestDetail;
+use Illuminate\Pagination\Paginator;
 use App\Http\Controllers\BaseController as BaseController;
 class TestController extends BaseController
 {
-    public function index()
+   public function index($page,$limit)
     {      
-       $maxResults = 5;    
-       Test::jsonPaginate($maxResults);
-       $tests = Test::all();
-       return $this->sendResponse($tests->toArray(), 'Tests retrieved successfully.'); 
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $tests = Test::paginate($limit);
+     $test = $tests->toArray();
+     $result['total'] = $tests->total();
+     $result['page'] = $tests->currentPage();
+     $result['pageSize'] = $tests->perPage();
+     $result['data']=$test['data'];
+       return $this->sendResponse($result, 'Tests retrieved successfully.'); 
     }
 
    

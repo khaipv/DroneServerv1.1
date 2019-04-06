@@ -5,15 +5,23 @@ use Illuminate\Http\Request;
 use App\Model\Cart;
 use App\Model\CartDetail;
 use App\Model\Product;
+use Illuminate\Pagination\Paginator;
+use App\Http\Controllers\BaseController as BaseController;
 use Validator;
-class CartController extends Controller
+class CartController extends BaseController
 {
-   public function index()
-    {      
-       $maxResults = 5;    
-       Cart::jsonPaginate($maxResults);
-       $carts = Cart::all();
-       return $this->sendResponse($carts->toArray(), 'Carts retrieved successfully.'); 
+   public function index($page,$limit)
+      {      
+          Paginator::currentPageResolver(function() use ($page) {
+              return $page;
+          });
+       $carts = Cart::paginate($limit);
+       $cart = $carts->toArray();
+       $result['total'] = $carts->total();
+       $result['page'] = $carts->currentPage();
+       $result['pageSize'] = $carts->perPage();
+       $result['data']=$cart['data'];
+       return $this->sendResponse($result, 'Carts retrieved successfully.'); 
     }
 
     public function insert(Request $request)
@@ -52,10 +60,18 @@ class CartController extends Controller
       
     } 
     
-    public function getdetailcart($id)
-    {      
-       $cartdetail= CartDetail::all()->where('gio_hang_id',$id) ;
-       return $cartdetail;    
+    public function getdetailcart($id,$page,$limit)
+    {     
+      Paginator::currentPageResolver(function() use ($page) {
+         return $page;
+     });
+  $cartdetail= CartDetail::where('gio_hang_id',$id)->paginate($limit);
+  $cart = $cartdetail->toArray();
+  $result['total'] = $cartdetail->total();
+  $result['page'] = $cartdetail->currentPage();
+  $result['pageSize'] = $cartdetail->perPage();
+  $result['data']=$cart['data'];
+  return $this->sendResponse($result, 'CartDetails retrieved successfully.');   
    
     }
 

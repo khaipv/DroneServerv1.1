@@ -4,15 +4,51 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Product;
 use Validator;
+use Illuminate\Pagination\Paginator;
 use App\Http\Controllers\BaseController as BaseController;
 class ProductController extends BaseController
 {
-    public function index()
+    public function index($page,$limit)
     {      
-      $maxResults = 5;    
-      Product::jsonPaginate($maxResults);
-      $products = Product::jsonPaginate($maxResults);
-      return $this->sendResponse($products->toArray(), 'Products retrieved successfully.');
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $products = Product::paginate($limit);
+     $product = $products->toArray();
+     $result['total'] = $products->total();
+     $result['page'] = $products->currentPage();
+     $result['pageSize'] = $products->perPage();
+     $result['data']=$product['data'];
+     return $this->sendResponse($result, 'Products retrieved successfully.');
+   
+    }
+
+    public function indexcata($id,$page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $products = Product::where('danh_muc_id',$id)->paginate($limit); 
+     $product = $products->toArray();
+     $result['total'] = $products->total();
+     $result['page'] = $products->currentPage();
+     $result['pageSize'] = $products->perPage();
+     $result['data']=$product['data'];
+     return $this->sendResponse($result, 'Products retrieved successfully.');
+   
+    }
+    public function indexsup($id,$page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $products = Product::where('nha_cung_cap_id',$id)->paginate($limit); 
+     $product = $products->toArray();
+     $result['total'] = $products->total();
+     $result['page'] = $products->currentPage();
+     $result['pageSize'] = $products->perPage();
+     $result['data']=$product['data'];
+     return $this->sendResponse($result, 'Products retrieved successfully.');
    
     }
 

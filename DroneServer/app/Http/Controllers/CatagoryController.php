@@ -3,15 +3,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Catagory;
+use Illuminate\Pagination\Paginator;
+use App\Http\Controllers\BaseController as BaseController;
 use Validator;
-class CatagoryController extends Controller
+class CatagoryController extends BaseController
 {
-   public function index()
-    {      
-       $maxResults = 5;    
-       Catagory::jsonPaginate($maxResults);
-       $carts = Catagory::all();
-       return $this->sendResponse($carts->toArray(), 'Catagories retrieved successfully.'); 
+        
+      public function index($page,$limit)
+      {      
+          Paginator::currentPageResolver(function() use ($page) {
+              return $page;
+          });
+       $catagorys = Catagory::paginate($limit);
+       $catagory = $catagorys->toArray();
+       $result['total'] = $catagorys->total();
+       $result['page'] = $catagorys->currentPage();
+       $result['pageSize'] = $catagorys->perPage();
+       $result['data']=$catagory['data'];
+       return $this->sendResponse($result, 'Catagories retrieved successfully.'); 
     }
 
 

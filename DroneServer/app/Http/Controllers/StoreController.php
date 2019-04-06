@@ -3,15 +3,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Store;
+use Illuminate\Pagination\Paginator;
 use Validator;
-class StoreController extends Controller
+use App\Http\Controllers\BaseController as BaseController;
+class StoreController extends BaseController
 {
-    public function index()
+    public function index($page,$limit)
     {      
-       $maxResults = 5;    
-       Store::jsonPaginate($maxResults);
-       $stores = Store::all();
-       return $this->sendResponse($stores->toArray(), 'Stores retrieved successfully.'); 
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $stores = Store::paginate($limit);
+     $store = $stores->toArray();
+     $result['total'] = $stores->total();
+     $result['page'] = $stores->currentPage();
+     $result['pageSize'] = $stores->perPage();
+     $result['data']=$store['data'];
+       return $this->sendResponse($result, 'Stores retrieved successfully.'); 
     }
 
     public function insert(Request $request)
