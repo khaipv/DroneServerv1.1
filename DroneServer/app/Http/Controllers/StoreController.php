@@ -8,6 +8,24 @@ use Validator;
 use App\Http\Controllers\BaseController as BaseController;
 class StoreController extends BaseController
 {
+      
+   /**
+     * Get store 
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Stores retrieved successfully."
+     * }
+     * @response 404
+     * {
+     * 
+     * "message":"Stores get error."
+     * 
+     * } 
+     */
+
     public function index($page,$limit)
     {      
         Paginator::currentPageResolver(function() use ($page) {
@@ -19,8 +37,33 @@ class StoreController extends BaseController
      $result['page'] = $stores->currentPage();
      $result['pageSize'] = $stores->perPage();
      $result['data']=$store['data'];
-       return $this->sendResponse($result, 'Stores retrieved successfully.'); 
+     if($result['data']==!null)
+     {
+       
+        return $this->sendResponse($result, 'Stores retrieved successfully.');
+     }
+    else
+    {
+        return response()->json(['message'=>'Stores get error.']);
     }
+       
+    }
+  
+   /**
+     * Add new store 
+     * @bodyParam $request Request information of store add(dia_chi,email,sdt,nguoi_dung_id)
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Store created successfully."
+     * }
+     * @response 404
+     * {
+     * 
+     * "message":"Validation Error."
+     * 
+     * } 
+     */
 
     public function insert(Request $request)
     {         
@@ -44,22 +87,57 @@ class StoreController extends BaseController
     return $this->sendResponse($store->toArray(), 'Store created successfully.');
 
 }
+  
+   /**
+   * Update store 
+   * @bodyParam $request Request information of store update
+   * @bodyParam $id bigInt id of store update
+   * @response {
+   * "message": "Stores updated successfully."
+   * }
+   * @response 404{
+   * "message":"Stores updated error." 
+   * } 
+   */
+
     public function update(Request $request, $id)
     {
         $store = new Store();
         $store = Store::findOrFail($id);
-        $store->update($request->all());
-
-       return response()->json($store, 200);    
+        if($store->update($request->all()))
+        {
+            return response()->json(['message'=>'Stores updated successfully.']);
+        }
+        else
+        {
+            return response()->json(['message'=>'Stores updated error.']);
+        }
+          
       
     } 
-    
+      
+   /**
+     * Delete store 
+     * @bodyParam $id bigInt store id delete
+     * @response {
+     * "message": "Store deleted sucessfully."
+     * }
+     * @response 404{
+     * "message":"Store deleted error." 
+     * } 
+     */
     public function delete($id)
     {
         $store = new Store();
         $store = Store::findOrFail($id);
-        $store->delete();
-        return response()->json(['sucess'=>'Store deleted sucessfully']);
+        if($store->delete())
+        {
+            return response()->json(['message'=>'Store deleted sucessfully.']);
+        }
+        else
+        {
+            return response()->json(['message'=>'Store deleted error.']);
+        }       
       
     }   
 }

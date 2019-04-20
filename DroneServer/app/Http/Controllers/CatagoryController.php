@@ -8,7 +8,22 @@ use App\Http\Controllers\BaseController as BaseController;
 use Validator;
 class CatagoryController extends BaseController
 {
-        
+    /**
+     * Get list catagory 
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response
+     * {
+     * "sucess": true
+     * "data":....
+     * "message": "Catagories retrieved successfully."
+     * }
+     * @response 404
+     * {
+     * "message":"Catagories get error."
+     * }
+     */
+
       public function index($page,$limit)
       {      
           Paginator::currentPageResolver(function() use ($page) {
@@ -20,9 +35,32 @@ class CatagoryController extends BaseController
        $result['page'] = $catagorys->currentPage();
        $result['pageSize'] = $catagorys->perPage();
        $result['data']=$catagory['data'];
-       return $this->sendResponse($result, 'Catagories retrieved successfully.'); 
+       if($result['data']==!null)
+       {
+         
+        return $this->sendResponse($result, 'Catagories retrieved successfully.'); 
+       }
+      else
+      {
+          return response()->json(['message'=>'Catagories get error.']);
+      }
+       
     }
 
+     /**
+     * Add new catagory
+     * @bodyParam $request Request information of catafory add(ten_danh_muc)
+     * @response
+     * {
+     *   "sucess": true
+     *   "data": "..."
+     *   "message": "Catagories created successfully."
+     * } 
+     * @response 404
+     * {
+     *   "message":"Validation Error."
+     * }
+     */
 
     public function insert(Request $request)
     {         
@@ -43,22 +81,69 @@ class CatagoryController extends BaseController
       return $this->sendResponse($catagory->toArray(), 'Catagories created successfully.');
  
     }
+
+     /**
+     * Update old catagory
+     * @bodyParam $request Request infomation of catagory update
+     * @bodyParam $id id of catagory update
+     * @response
+     * {
+     *   "sucess": true
+     *   "data": "..."
+     *   "message": "Catagories updated successfully."
+     * } 
+     * @response 404
+     * {
+     *   "message":"Catagory updated error."
+     * }
+     * 
+     */
+
+
     public function update(Request $request, $id)
     {
        $catagory = new Catagory();
        $catagory = Catagory::findOrFail($id);
-       $catagory->update($request->all());
-
-       return response()->json(['sucess'=>'Catagory deleted sucessfully']);   
+       if($catagory->update($request->all()))
+       {
+         return response()->json(['message'=>'Catagory updated sucessfully.']);
+       }
+       else
+       {
+         return response()->json(['message'=>'Catagory updated error.']);
+       }
       
     } 
     
+
+     /**
+     * Delete catagory with id 
+     * @bodyParam $id int id of catagory delete
+     * @respone
+     * {
+     *   "sucess": true
+     *   "data": "..."
+     *   "message": "Catagory deleted sucessfully."
+     * }
+     * @response 404
+     * {
+     *   "message":"Catagory deleted error."
+     * } 
+     */
+
+
     public function delete($id)
     {
        $catagory = new Catagory();
        $catagory = Catagory::findOrFail($id);
-       $catagory->delete();
-       return response()->json(null, 204);
+       if($catagory->delete())
+       {
+         return response()->json(['message'=>'Catagory deleted sucessfully.']);
+       }
+       else
+       {
+       return response()->json(['message'=>'Catagory deleted error.']);
+       }
       
     }   
 }

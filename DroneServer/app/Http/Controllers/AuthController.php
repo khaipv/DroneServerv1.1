@@ -14,7 +14,19 @@ class AuthController extends Controller
 {
 	public $successStatus = 200;
     
-  
+   /**
+     * Login
+     * @bodyParam $request Request infomation login email, password
+     * @response{
+     * "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjhiOWJhZGNhOGUzOTU2Y2UyNDhjZjQ4NWIxMTc1MWRkMDM1ZGE2YjZmNWExNDA1YmFlN2ExMTIzMTdlNDNjODgwMGRkZmZkYzIxNzI4YjVjIn0.eyJhdWQiOiIxIiwianRpIjoiOGI5YmFkY2E4ZTM5NTZjZTI0OGNmNDg1YjExNzUxZGQwMzVkYTZiNmY1YTE0MDViYWU3YTExMjMxN2U0M2M4ODAwZGRmZmRjMjE3MjhiNWMiLCJpYXQiOjE1NTUzMjc1MjIsIm5iZiI6MTU1NTMyNzUyMiwiZXhwIjoxNTg2OTQ5OTIyLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.isVOgUgiUDaOizURiXGVuGXpXS8hmFFTuVWIP5qQ2xqknntoDDGGG-CVrvdT-OkNAdHyyxlEZQ-1WfM194LC3lJTDf2Y6FdHNAykJtLZNbbvGXENX7s0GPVjlqvvKKwOqWk6mTe4hovrBRqBcPVRNtLsCi9huHmEiLHQFBZdf3E3kCLJJLajJ4PSsZqTcFixkSaxyQ0AkjLRfTMd7ANGCh8Zi-kkHGKV_FW_fBZvGESARC6Iaga-pftHZD2LLMzkakxTx9pbb7V58oGrqNrDL3oMt-W18jjxf5QIDwrVc0gcrIF9-YUaKzfTgmX3C6EbfJZnMG8npImkOsnnmwAr_C7F_w5ijSyybXGgb0oCtn29Ci4jcMsuQCOcvp1M_5nF6kXGgVzE06pYYM0rdXdI1NFSo2Y_ymjhHYwq1nRdrbKmy8AE-Bm9hhyxZ8hMIMeA7KOvt7VMJgAsrQThVd_gHEMs5Z1MNpxi5RG35n4ycRfZsoZX9wyU1WOKfAxpwxogbJhQ2lwslupjctuUOWF90M-yaBML-pvbqQP_EH62QiJlpaJWUDop2jdofJSpfdZuOXsKKJrAlbIDusLY776wjdy4L6iMeA3_Bu3nL3PGsaRMjgvsgu4itQeGzV3PlCBh3soPEvRhq_4CFCK2Cs0sm0ChR8LpvrBPU1AtjjbuQ-o",
+     * "token_type": "Bearer",
+     * "expires_at": "2020-04-15 11:25:22"
+     * }
+     * @response 404 {
+     *  message": "Unauthorized""
+     * } 
+     */
+
     public function login(Request $request)
     {
 		$request->validate([
@@ -42,22 +54,20 @@ class AuthController extends Controller
         ]);
     }
   
-         /**
-     * register API
-     *
-     * @return \Illuminate\Http\Response
+    /**
+     * Register 
+     * @bodyParam $request Request infomation of user (ho_ten,email,password,so_dien_thoai,dia_chi,password_confirmation)
      */
     public function register(Request $request)
     {
-    $request->validate([
-	'ho_ten' => 'required|string',
-	'email' => 'required|string|email|unique:nguoi_dung',
-    'password' => 'required|between:8,255|confirmed',
-    'so_dien_thoai' => 'required|string',
-    'dia_chi' => 'required|string',
-	'password_confirmation' => 'required ',
-]); 
-
+//     $request->validate([
+// 	'ho_ten' => 'required|string',
+// 	'email' => 'required|string|email|unique:nguoi_dung',
+//     'password' => 'required|between:8,255|confirmed',
+//     'so_dien_thoai' => 'required|string',
+//     'dia_chi' => 'required|string',
+// 	'password_confirmation' => 'required ',
+// ]); 
 {
     $user = User::create([
       'ho_ten'     => $request['ho_ten'],
@@ -69,15 +79,16 @@ class AuthController extends Controller
     ]);
    
        $result= $user->save();
-       if($result=1)
+       if($result==1)
        {
        return response()->json([
         'message' => 'Successfully created user!','user'=>$user
    ], 201);
+   return response()->json([
+    'message' => 'Successfully created user!']);
 }	
-}
-    }  	
-	
+ }
+    }
    
     public function details() 
     { 
@@ -97,7 +108,7 @@ class AuthController extends Controller
 	
 	/**
      * Logout user (Revoke the token)
-     *
+     * @bodyParam $request Request (token delete logout) 
      * @return [string] message
      */
     public function logout(Request $request)

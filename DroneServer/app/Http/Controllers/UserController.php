@@ -5,9 +5,17 @@ use Illuminate\Http\Request;
 use App\Model\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Pagination\Paginator;
+use App\Http\Controllers\BaseController as BaseController;
 use Validator;
-class UserController extends Controller
+class UserController extends BaseController
 {
+
+     
+   /**
+     * Get list user 
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     */
    public function index($page,$limit)
     {      
         Paginator::currentPageResolver(function() use ($page) {
@@ -19,8 +27,23 @@ class UserController extends Controller
      $result['page'] = $users->currentPage();
      $result['pageSize'] = $users->perPage();
      $result['data']=$user['data'];
-       return $this->sendResponse($result, 'Users retrieved successfully.'); 
+     if($result['data']==!null)
+     {
+      return $this->sendResponse($result, 'Users retrieved successfully.'); 
+     }
+     else
+     {
+      return response()->json(['message'=>'User get error.']);
+     }
     }
+
+      
+   /**
+     * Get user with role 
+     * @bodyParam bigInt $id id of role
+     * @bodyParam int $page page int
+     * @bodyParam int $limit pageSize
+     */
     public function indexrole($id,$page,$limit)
     {      
         Paginator::currentPageResolver(function() use ($page) {
@@ -32,9 +55,20 @@ class UserController extends Controller
      $result['page'] = $users->currentPage();
      $result['pageSize'] = $users->perPage();
      $result['data']=$user['data'];
-       return $this->sendResponse($result, 'Users retrieved successfully.'); 
+     if($result['data']==!null)
+     {
+      return $this->sendResponse($result, 'Users retrieved successfully.'); 
+     }
+     else
+     {
+      return response()->json(['sucess'=>'User get error.']);
+     }
     }
-
+  
+   /**
+     * Add new user
+     * @bodyParam Request $request information of user add
+     */
     public function insert(Request $request)
     {         
        $user= new User;
@@ -51,22 +85,46 @@ class UserController extends Controller
          return response()->json($user, 201);
        }
     }
+      
+   /**
+     * Update old user 
+     * @bodyParam Request $request information of user update
+     * @bodyParam bigInt $id of user
+     */
     public function update(Request $request, $id)
     {
-      $product = new User();
-       $product = User::findOrFail($id);
-       $product->update($request->all());
-
-       return response()->json($product, 200);    
+       $user = new User();
+       $user = User::findOrFail($id);
+      
+       if( $user->update($request->all()))
+       {
+         return response()->json(['sucess'=>'user updated sucessfully.']);
+       }
+      else
+       {
+         return response()->json(['sucess'=>'test updated error.']);
+       }  
       
     } 
+      
+   /**
+     * Delete user 
+     * @bodyParam bigInt $id of user update 
+     */
     
     public function delete($id)
     {
-       $product = new User();
-       $product = User::findOrFail($id);
-       $product->delete();
-       return response()->json(null, 204);
+       $user = new User();
+       $user = User::findOrFail($id);
+      
+       if($user->delete())
+       {
+         return response()->json(['sucess'=>'user deleted sucessfully.']);
+       }
+      else
+       {
+         return response()->json(['sucess'=>'test deleted error.']);
+       }  
       
     }  
     
