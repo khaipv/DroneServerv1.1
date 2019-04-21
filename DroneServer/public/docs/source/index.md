@@ -30,7 +30,7 @@ Welcome to the generated API reference.
 curl -X GET -G "http://localhost/api/product/page={page}&amp;limit={size}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$page":3,"$limit":6}'
+    -d '{"$page":12,"$limit":17}'
 
 ```
 
@@ -44,8 +44,8 @@ let headers = {
 }
 
 let body = {
-    "$page": 3,
-    "$limit": 6
+    "$page": 12,
+    "$limit": 17
 }
 
 fetch(url, {
@@ -150,7 +150,7 @@ Parameter | Type | Status | Description
 curl -X GET -G "http://localhost/api/product/cata={id}&amp;page={page}&amp;limit={size}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$id":"0gQNJ747xOl5E7pN","$page":5,"$limit":3}'
+    -d '{"$id":"F5dHLW8M638j06s0","$page":8,"$limit":6}'
 
 ```
 
@@ -164,9 +164,9 @@ let headers = {
 }
 
 let body = {
-    "$id": "0gQNJ747xOl5E7pN",
-    "$page": 5,
-    "$limit": 3
+    "$id": "F5dHLW8M638j06s0",
+    "$page": 8,
+    "$limit": 6
 }
 
 fetch(url, {
@@ -204,6 +204,311 @@ Parameter | Type | Status | Description
 
 <!-- END_3b2a57b70398fcc1d4f8bf8dc779fa10 -->
 
+<!-- START_2e259483661687a16501e47e8f0e714c -->
+## Get product hiden some infomation()
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/productname/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":4,"$limit":7}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/productname/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 4,
+    "$limit": 7
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+> Example response (404):
+
+```json
+{
+    "message": "Product get error."
+}
+```
+
+### HTTP Request
+`GET api/productname/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_2e259483661687a16501e47e8f0e714c -->
+
+<!-- START_28c6616adba1990e1a1fdf2e8ec7b097 -->
+## Get list id product
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/productid/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":7,"$limit":10}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/productid/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 7,
+    "$limit": 10
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+> Example response (404):
+
+```json
+{
+    "message": "Id products get error."
+}
+```
+
+### HTTP Request
+`GET api/productid/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_28c6616adba1990e1a1fdf2e8ec7b097 -->
+
+<!-- START_f655c2012a9361a71ff9406556591872 -->
+## Get list name product is sorted by abc
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/productnamesort/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":16,"$limit":12}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/productnamesort/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 16,
+    "$limit": 12
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+> Example response (404):
+
+```json
+{
+    "message": "Name-products get error."
+}
+```
+
+### HTTP Request
+`GET api/productnamesort/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_f655c2012a9361a71ff9406556591872 -->
+
+<!-- START_79d4bc40515d64b85d946b6f5649a2b2 -->
+## Get list prices product is sorted increased value
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/productpricessort/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":8,"$limit":8}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/productpricessort/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 8,
+    "$limit": 8
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+> Example response (404):
+
+```json
+{
+    "message": "Prices-products get error."
+}
+```
+
+### HTTP Request
+`GET api/productpricessort/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_79d4bc40515d64b85d946b6f5649a2b2 -->
+
+<!-- START_a1ad81e2cd64e316723e10cd5fc903d1 -->
+## Get list prices product is sorted increased value
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/productpricessortde/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":19,"$limit":14}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/productpricessortde/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 19,
+    "$limit": 14
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+> Example response (404):
+
+```json
+{
+    "message": "Prices-products get error."
+}
+```
+
+### HTTP Request
+`GET api/productpricessortde/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_a1ad81e2cd64e316723e10cd5fc903d1 -->
+
 <!-- START_1eef80a8b3d8845e7e1c4ed9f690602d -->
 ## Register
 
@@ -213,7 +518,7 @@ Parameter | Type | Status | Description
 curl -X GET -G "http://localhost/api/product/sup={id}&amp;page={page}&amp;limit={size}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$id":"6pYi1a15AsfpQCXa","$page":4,"$limit":6}'
+    -d '{"$id":"F2RnxRXHCvNUXwZi","$page":15,"$limit":12}'
 
 ```
 
@@ -227,9 +532,9 @@ let headers = {
 }
 
 let body = {
-    "$id": "6pYi1a15AsfpQCXa",
-    "$page": 4,
-    "$limit": 6
+    "$id": "F2RnxRXHCvNUXwZi",
+    "$page": 15,
+    "$limit": 12
 }
 
 fetch(url, {
@@ -276,7 +581,7 @@ Parameter | Type | Status | Description
 curl -X GET -G "http://localhost/api/store/page={page}&amp;limit={size}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$page":9,"$limit":3}'
+    -d '{"$page":11,"$limit":2}'
 
 ```
 
@@ -290,8 +595,8 @@ let headers = {
 }
 
 let body = {
-    "$page": 9,
-    "$limit": 3
+    "$page": 11,
+    "$limit": 2
 }
 
 fetch(url, {
@@ -328,21 +633,21 @@ Parameter | Type | Status | Description
 
 <!-- END_ea1c345e57af7e9ce6c0a9db451d7c7f -->
 
-<!-- START_d8b29554c4b96d2838c618a2ba3cba5a -->
-## Get list catagory
+<!-- START_d9d4402a5cfa24405d231e4a39f3d380 -->
+## Get list catagory hidden id
 
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost/api/catagory/page={page}&amp;limit={size}" \
+curl -X GET -G "http://localhost/api/catagoryid/page={page}&amp;limit={size}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$page":8,"$limit":6}'
+    -d '{"$page":9,"$limit":19}'
 
 ```
 
 ```javascript
-const url = new URL("http://localhost/api/catagory/page={page}&amp;limit={size}");
+const url = new URL("http://localhost/api/catagoryid/page={page}&amp;limit={size}");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -351,8 +656,8 @@ let headers = {
 }
 
 let body = {
-    "$page": 8,
-    "$limit": 6
+    "$page": 9,
+    "$limit": 19
 }
 
 fetch(url, {
@@ -378,7 +683,7 @@ fetch(url, {
 ```
 
 ### HTTP Request
-`GET api/catagory/page={page}&amp;limit={size}`
+`GET api/catagoryid/page={page}&amp;limit={size}`
 
 #### Body Parameters
 
@@ -387,7 +692,7 @@ Parameter | Type | Status | Description
     $page | integer |  optional  | page in
     $limit | integer |  optional  | pageSize
 
-<!-- END_d8b29554c4b96d2838c618a2ba3cba5a -->
+<!-- END_d9d4402a5cfa24405d231e4a39f3d380 -->
 
 <!-- START_b51525bd66ced5c8e38f778047da0b72 -->
 ## Get prices
@@ -398,7 +703,7 @@ Parameter | Type | Status | Description
 curl -X GET -G "http://localhost/api/prices/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"bigInt":"sDIVL5jgaMoH9ZQW"}'
+    -d '{"bigInt":"XGmIiazMNomClU47"}'
 
 ```
 
@@ -412,7 +717,7 @@ let headers = {
 }
 
 let body = {
-    "bigInt": "sDIVL5jgaMoH9ZQW"
+    "bigInt": "XGmIiazMNomClU47"
 }
 
 fetch(url, {
@@ -450,7 +755,7 @@ Parameter | Type | Status | Description
 curl -X POST "http://localhost/api/register" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$request":"lml6iS0CIvsQVWPJ"}'
+    -d '{"$request":"fpCxLfYyaAvjQHrK"}'
 
 ```
 
@@ -464,7 +769,7 @@ let headers = {
 }
 
 let body = {
-    "$request": "lml6iS0CIvsQVWPJ"
+    "$request": "fpCxLfYyaAvjQHrK"
 }
 
 fetch(url, {
@@ -476,6 +781,22 @@ fetch(url, {
     .then(json => console.log(json));
 ```
 
+> Example response (200):
+
+```json
+{
+    "message": "Successfully created user!",
+    "token_type": "Bearer",
+    "expires_at": "2020-04-15 11:25:22"
+}
+```
+> Example response (404):
+
+```json
+{
+    "message": "Validation Error"
+}
+```
 
 ### HTTP Request
 `POST api/register`
@@ -497,7 +818,7 @@ Parameter | Type | Status | Description
 curl -X POST "http://localhost/api/login" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$request":"UDG79vIRQtSwykEc"}'
+    -d '{"$request":"dFuWOLA55cFfjBvF"}'
 
 ```
 
@@ -511,7 +832,7 @@ let headers = {
 }
 
 let body = {
-    "$request": "UDG79vIRQtSwykEc"
+    "$request": "dFuWOLA55cFfjBvF"
 }
 
 fetch(url, {
@@ -597,7 +918,7 @@ null
 curl -X GET -G "http://localhost/api/user&amp;role={id}&amp;page={page}&amp;limit={size}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"bigInt":"HnjjpfmMdxUsXSDK","int":"rekJYy4RlL4l8G18"}'
+    -d '{"bigInt":"C66pT5f32Z5Es3A5","int":"537Mfwn1TOD21yUK"}'
 
 ```
 
@@ -611,8 +932,8 @@ let headers = {
 }
 
 let body = {
-    "bigInt": "HnjjpfmMdxUsXSDK",
-    "int": "rekJYy4RlL4l8G18"
+    "bigInt": "C66pT5f32Z5Es3A5",
+    "int": "537Mfwn1TOD21yUK"
 }
 
 fetch(url, {
@@ -624,10 +945,17 @@ fetch(url, {
     .then(json => console.log(json));
 ```
 
-> Example response:
+> Example response (200):
 
 ```json
-null
+{}
+```
+> Example response (404):
+
+```json
+{
+    "message": "Users get error."
+}
 ```
 
 ### HTTP Request
@@ -651,7 +979,7 @@ Parameter | Type | Status | Description
 curl -X GET -G "http://localhost/api/logout" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$request":"ySyacdFrT76cSo3A"}'
+    -d '{"$request":"Wm0UFunEmqWKiuba"}'
 
 ```
 
@@ -665,7 +993,7 @@ let headers = {
 }
 
 let body = {
-    "$request": "ySyacdFrT76cSo3A"
+    "$request": "Wm0UFunEmqWKiuba"
 }
 
 fetch(url, {
@@ -703,7 +1031,7 @@ Parameter | Type | Status | Description
 curl -X POST "http://localhost/api/product" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$request":"6aXSyzXqstmIckFZ"}'
+    -d '{"$request":"O1O3hkKXag4LgZRw"}'
 
 ```
 
@@ -717,7 +1045,7 @@ let headers = {
 }
 
 let body = {
-    "$request": "6aXSyzXqstmIckFZ"
+    "$request": "O1O3hkKXag4LgZRw"
 }
 
 fetch(url, {
@@ -764,7 +1092,7 @@ Parameter | Type | Status | Description
 curl -X PUT "http://localhost/api/product/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$id":10,"$request":"PxE4d87isML2C2DU"}'
+    -d '{"$id":13,"$request":"YCDaUN688cItbOAB"}'
 
 ```
 
@@ -778,8 +1106,8 @@ let headers = {
 }
 
 let body = {
-    "$id": 10,
-    "$request": "PxE4d87isML2C2DU"
+    "$id": 13,
+    "$request": "YCDaUN688cItbOAB"
 }
 
 fetch(url, {
@@ -827,7 +1155,7 @@ Parameter | Type | Status | Description
 curl -X DELETE "http://localhost/api/product/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$id":20}'
+    -d '{"$id":3}'
 
 ```
 
@@ -841,7 +1169,7 @@ let headers = {
 }
 
 let body = {
-    "$id": 20
+    "$id": 3
 }
 
 fetch(url, {
@@ -888,7 +1216,7 @@ Parameter | Type | Status | Description
 curl -X POST "http://localhost/api/store" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$request":"06sWG5Rucjt7N6hQ"}'
+    -d '{"$request":"HgDYdtQhCi1Jbyft"}'
 
 ```
 
@@ -902,7 +1230,7 @@ let headers = {
 }
 
 let body = {
-    "$request": "06sWG5Rucjt7N6hQ"
+    "$request": "HgDYdtQhCi1Jbyft"
 }
 
 fetch(url, {
@@ -947,7 +1275,7 @@ Parameter | Type | Status | Description
 curl -X PUT "http://localhost/api/store/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$request":"Xa9ROv6qL704Jt2z","$id":"oCrYQgQM7tR4UXid"}'
+    -d '{"$request":"pnrbmCF9BB6t8fFP","$id":"6WhLkchk8OdYMmXN"}'
 
 ```
 
@@ -961,8 +1289,8 @@ let headers = {
 }
 
 let body = {
-    "$request": "Xa9ROv6qL704Jt2z",
-    "$id": "oCrYQgQM7tR4UXid"
+    "$request": "pnrbmCF9BB6t8fFP",
+    "$id": "6WhLkchk8OdYMmXN"
 }
 
 fetch(url, {
@@ -1010,7 +1338,7 @@ Parameter | Type | Status | Description
 curl -X DELETE "http://localhost/api/store/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$id":"w1XjO51ypVNCNjop"}'
+    -d '{"$id":"8CEnqBbKBrM1G1u8"}'
 
 ```
 
@@ -1024,7 +1352,7 @@ let headers = {
 }
 
 let body = {
-    "$id": "w1XjO51ypVNCNjop"
+    "$id": "8CEnqBbKBrM1G1u8"
 }
 
 fetch(url, {
@@ -1071,7 +1399,7 @@ Parameter | Type | Status | Description
 curl -X GET -G "http://localhost/api/role/page={page}&amp;limit={size}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$page":3,"$limit":15}'
+    -d '{"$page":3,"$limit":14}'
 
 ```
 
@@ -1086,7 +1414,7 @@ let headers = {
 
 let body = {
     "$page": 3,
-    "$limit": 15
+    "$limit": 14
 }
 
 fetch(url, {
@@ -1125,7 +1453,7 @@ Parameter | Type | Status | Description
 curl -X POST "http://localhost/api/role" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$request":"KaK2o5GCSJD58BWa"}'
+    -d '{"$request":"hUUgmm3otBLfFfMf"}'
 
 ```
 
@@ -1139,7 +1467,7 @@ let headers = {
 }
 
 let body = {
-    "$request": "KaK2o5GCSJD58BWa"
+    "$request": "hUUgmm3otBLfFfMf"
 }
 
 fetch(url, {
@@ -1177,7 +1505,7 @@ Parameter | Type | Status | Description
 curl -X PUT "http://localhost/api/role/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$request":"Rr41nusUYdfoko8r","$id":"gQIWNLTkfcLdkuso"}'
+    -d '{"$request":"vWI7mLbawodahOj4","$id":"5MoU4M8MiR5LzdVR"}'
 
 ```
 
@@ -1191,8 +1519,8 @@ let headers = {
 }
 
 let body = {
-    "$request": "Rr41nusUYdfoko8r",
-    "$id": "gQIWNLTkfcLdkuso"
+    "$request": "vWI7mLbawodahOj4",
+    "$id": "5MoU4M8MiR5LzdVR"
 }
 
 fetch(url, {
@@ -1233,7 +1561,7 @@ Parameter | Type | Status | Description
 curl -X DELETE "http://localhost/api/role/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$id":"vmK7NQEZTg4TC2dA"}'
+    -d '{"$id":"EU6LfZe5S6iLhaDs"}'
 
 ```
 
@@ -1247,7 +1575,7 @@ let headers = {
 }
 
 let body = {
-    "$id": "vmK7NQEZTg4TC2dA"
+    "$id": "EU6LfZe5S6iLhaDs"
 }
 
 fetch(url, {
@@ -1287,7 +1615,7 @@ Parameter | Type | Status | Description
 curl -X POST "http://localhost/api/catagory" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$request":"80PgMQSZrqhYWCqL"}'
+    -d '{"$request":"uCXuo9MRzBcZMLtb"}'
 
 ```
 
@@ -1301,7 +1629,7 @@ let headers = {
 }
 
 let body = {
-    "$request": "80PgMQSZrqhYWCqL"
+    "$request": "uCXuo9MRzBcZMLtb"
 }
 
 fetch(url, {
@@ -1346,7 +1674,7 @@ Parameter | Type | Status | Description
 curl -X PUT "http://localhost/api/catagory/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$request":"f2tDQX42uYPacfiL","$id":"T1nsdG1gqvl8ztGS"}'
+    -d '{"$request":"mzV2UHcHbeEMntWL","$id":"7HV77HOhdB5ik8pK"}'
 
 ```
 
@@ -1360,8 +1688,8 @@ let headers = {
 }
 
 let body = {
-    "$request": "f2tDQX42uYPacfiL",
-    "$id": "T1nsdG1gqvl8ztGS"
+    "$request": "mzV2UHcHbeEMntWL",
+    "$id": "7HV77HOhdB5ik8pK"
 }
 
 fetch(url, {
@@ -1407,7 +1735,7 @@ Parameter | Type | Status | Description
 curl -X DELETE "http://localhost/api/catagory/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$id":6}'
+    -d '{"$id":7}'
 
 ```
 
@@ -1421,7 +1749,7 @@ let headers = {
 }
 
 let body = {
-    "$id": 6
+    "$id": 7
 }
 
 fetch(url, {
@@ -1461,7 +1789,7 @@ Parameter | Type | Status | Description
 curl -X GET -G "http://localhost/api/users/page={page}&amp;limit={size}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$page":7,"$limit":8}'
+    -d '{"$page":18,"$limit":13}'
 
 ```
 
@@ -1475,62 +1803,8 @@ let headers = {
 }
 
 let body = {
-    "$page": 7,
-    "$limit": 8
-}
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-    body: body
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-> Example response:
-
-```json
-null
-```
-
-### HTTP Request
-`GET api/users/page={page}&amp;limit={size}`
-
-#### Body Parameters
-
-Parameter | Type | Status | Description
---------- | ------- | ------- | ------- | -----------
-    $page | integer |  optional  | page in
-    $limit | integer |  optional  | pageSize
-
-<!-- END_2b08ee65dd9d3a652fad34faa3c6631a -->
-
-<!-- START_c08615e2e30d3df3f2c7b6bb6314db46 -->
-## Get list order
-
-> Example request:
-
-```bash
-curl -X GET -G "http://localhost/api/order/page={page}&amp;limit={size}" \
-    -H "Authorization: Bearer: {token}" \
-    -H "Content-Type: application/json" \
-    -d '{"$page":9,"$limit":3}'
-
-```
-
-```javascript
-const url = new URL("http://localhost/api/order/page={page}&amp;limit={size}");
-
-let headers = {
-    "Authorization": "Bearer: {token}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-}
-
-let body = {
-    "$page": 9,
-    "$limit": 3
+    "$page": 18,
+    "$limit": 13
 }
 
 fetch(url, {
@@ -1547,9 +1821,16 @@ fetch(url, {
 ```json
 {}
 ```
+> Example response (404):
+
+```json
+{
+    "message": "Users get error."
+}
+```
 
 ### HTTP Request
-`GET api/order/page={page}&amp;limit={size}`
+`GET api/users/page={page}&amp;limit={size}`
 
 #### Body Parameters
 
@@ -1558,7 +1839,68 @@ Parameter | Type | Status | Description
     $page | integer |  optional  | page in
     $limit | integer |  optional  | pageSize
 
-<!-- END_c08615e2e30d3df3f2c7b6bb6314db46 -->
+<!-- END_2b08ee65dd9d3a652fad34faa3c6631a -->
+
+<!-- START_d8b29554c4b96d2838c618a2ba3cba5a -->
+## Get list catagory
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/catagory/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":9,"$limit":13}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/catagory/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 9,
+    "$limit": 13
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+> Example response (404):
+
+```json
+{
+    "message": "Catagories get error."
+}
+```
+
+### HTTP Request
+`GET api/catagory/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_d8b29554c4b96d2838c618a2ba3cba5a -->
 
 <!-- START_c3643c0463ccf88673e64bd22902ce3b -->
 ## Get order with user-id
@@ -1569,7 +1911,7 @@ Parameter | Type | Status | Description
 curl -X GET -G "http://localhost/api/order/user={id}&amp;page={page}&amp;limit={size}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$id":"RngJ2j6o9Oq6p948","$page":10,"$limit":3}'
+    -d '{"$id":"UKESwaeibnu6QV9F","$page":9,"$limit":15}'
 
 ```
 
@@ -1583,9 +1925,9 @@ let headers = {
 }
 
 let body = {
-    "$id": "RngJ2j6o9Oq6p948",
-    "$page": 10,
-    "$limit": 3
+    "$id": "UKESwaeibnu6QV9F",
+    "$page": 9,
+    "$limit": 15
 }
 
 fetch(url, {
@@ -1625,7 +1967,7 @@ Parameter | Type | Status | Description
 curl -X GET -G "http://localhost/api/order/date={date}&amp;page={page}&amp;limit={size}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$date":"SbvvB9pCMSqOUXvX","$page":11,"$limit":14}'
+    -d '{"$date":"XX9xnylovWA1l2SA","$page":2,"$limit":9}'
 
 ```
 
@@ -1639,9 +1981,9 @@ let headers = {
 }
 
 let body = {
-    "$date": "SbvvB9pCMSqOUXvX",
-    "$page": 11,
-    "$limit": 14
+    "$date": "XX9xnylovWA1l2SA",
+    "$page": 2,
+    "$limit": 9
 }
 
 fetch(url, {
@@ -1681,7 +2023,7 @@ Parameter | Type | Status | Description
 curl -X GET -G "http://localhost/api/order/datere={date}&amp;page={page}&amp;limit={size}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$date":"ZKip8sJPGJ1ZnniN","$page":19,"$limit":5}'
+    -d '{"$date":"PahyrNtXMRGEDx0V","$page":20,"$limit":18}'
 
 ```
 
@@ -1695,9 +2037,9 @@ let headers = {
 }
 
 let body = {
-    "$date": "ZKip8sJPGJ1ZnniN",
-    "$page": 19,
-    "$limit": 5
+    "$date": "PahyrNtXMRGEDx0V",
+    "$page": 20,
+    "$limit": 18
 }
 
 fetch(url, {
@@ -1728,6 +2070,311 @@ Parameter | Type | Status | Description
 
 <!-- END_41c4109815dd93a1660391383072c3db -->
 
+<!-- START_1e736cdddf517ffa018edd85a686e60a -->
+## Get list user hidden id
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/userid" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":19,"$limit":5}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/userid");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 19,
+    "$limit": 5
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+> Example response (404):
+
+```json
+{
+    "message": "Users get error."
+}
+```
+
+### HTTP Request
+`GET api/userid`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_1e736cdddf517ffa018edd85a686e60a -->
+
+<!-- START_6f092e89c928c3e45502f93b6d672ff4 -->
+## Get list user hidden id,password
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/user1" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":7,"$limit":2}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/user1");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 7,
+    "$limit": 2
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+> Example response (404):
+
+```json
+{
+    "message": "Users get error."
+}
+```
+
+### HTTP Request
+`GET api/user1`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_6f092e89c928c3e45502f93b6d672ff4 -->
+
+<!-- START_7afd1b706b17423b891c7b7a0d3a4284 -->
+## Get list user hidden id,password,email
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/user2" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":3,"$limit":1}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/user2");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 3,
+    "$limit": 1
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+> Example response (404):
+
+```json
+{
+    "message": "Users get error."
+}
+```
+
+### HTTP Request
+`GET api/user2`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_7afd1b706b17423b891c7b7a0d3a4284 -->
+
+<!-- START_caeaa396b071c0325164ba8853f58f4c -->
+## Get list user hidden id,password,email,role
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/user3" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":2,"$limit":13}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/user3");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 2,
+    "$limit": 13
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+> Example response (404):
+
+```json
+{
+    "message": "Users get error."
+}
+```
+
+### HTTP Request
+`GET api/user3`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_caeaa396b071c0325164ba8853f58f4c -->
+
+<!-- START_cd80d041b46a131221ccc483ddb67130 -->
+## Get list user hidden id,password,email,role
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/user4" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":3,"$limit":1}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/user4");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 3,
+    "$limit": 1
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+> Example response (404):
+
+```json
+{
+    "message": "Users get error."
+}
+```
+
+### HTTP Request
+`GET api/user4`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_cd80d041b46a131221ccc483ddb67130 -->
+
 <!-- START_04cf024f51de65a274a7dcbb78a2609f -->
 ## Delete order with id
 
@@ -1737,7 +2384,7 @@ Parameter | Type | Status | Description
 curl -X DELETE "http://localhost/api/order/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$id":"tgmrTuVY8iihZ0Fo"}'
+    -d '{"$id":"308M8YHLrIbMFuiu"}'
 
 ```
 
@@ -1751,7 +2398,7 @@ let headers = {
 }
 
 let body = {
-    "$id": "tgmrTuVY8iihZ0Fo"
+    "$id": "308M8YHLrIbMFuiu"
 }
 
 fetch(url, {
@@ -1791,7 +2438,7 @@ Parameter | Type | Status | Description
 curl -X POST "http://localhost/api/test" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$request":"ROr0y1h4BorokEdk"}'
+    -d '{"$request":"LIj7jAcWy8cMUrYa"}'
 
 ```
 
@@ -1805,7 +2452,7 @@ let headers = {
 }
 
 let body = {
-    "$request": "ROr0y1h4BorokEdk"
+    "$request": "LIj7jAcWy8cMUrYa"
 }
 
 fetch(url, {
@@ -1841,6 +2488,60 @@ Parameter | Type | Status | Description
 
 <!-- END_50c0a334d57bffdf48ce568bad023ce0 -->
 
+<!-- START_6adce66c1595a91ffcb4d87e70169df7 -->
+## Get list role witout id
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/roleid/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":19,"$limit":6}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/roleid/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 19,
+    "$limit": 6
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+
+### HTTP Request
+`GET api/roleid/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_6adce66c1595a91ffcb4d87e70169df7 -->
+
 <!-- START_1adf8d8c1f777bda7d99fe57a7c6cd4b -->
 ## Get detail-order with id
 
@@ -1850,7 +2551,7 @@ Parameter | Type | Status | Description
 curl -X GET -G "http://localhost/api/orderdetail/{id}/page={page}&amp;limit={size}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$id":"h5WOLBOptX7cBfLN","$page":8,"$limit":18}'
+    -d '{"$id":"9Z2MwxXtNudQj5o5","$page":13,"$limit":20}'
 
 ```
 
@@ -1864,9 +2565,9 @@ let headers = {
 }
 
 let body = {
-    "$id": "h5WOLBOptX7cBfLN",
-    "$page": 8,
-    "$limit": 18
+    "$id": "9Z2MwxXtNudQj5o5",
+    "$page": 13,
+    "$limit": 20
 }
 
 fetch(url, {
@@ -1906,7 +2607,7 @@ Parameter | Type | Status | Description
 curl -X PUT "http://localhost/api/test/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$request":"MfvGkcCgdYxBjWld","$id":"6beUIoGWtEhQDSO8"}'
+    -d '{"$request":"yFJzh9EJySgNdIEw","$id":"kfM8KkgKUKfFdQTW"}'
 
 ```
 
@@ -1920,8 +2621,8 @@ let headers = {
 }
 
 let body = {
-    "$request": "MfvGkcCgdYxBjWld",
-    "$id": "6beUIoGWtEhQDSO8"
+    "$request": "yFJzh9EJySgNdIEw",
+    "$id": "kfM8KkgKUKfFdQTW"
 }
 
 fetch(url, {
@@ -1969,7 +2670,7 @@ Parameter | Type | Status | Description
 curl -X DELETE "http://localhost/api/test/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$id":"vWMbINbBNzhpbOgP"}'
+    -d '{"$id":"SJdpI6JNDT0Igrd8"}'
 
 ```
 
@@ -1983,7 +2684,7 @@ let headers = {
 }
 
 let body = {
-    "$id": "vWMbINbBNzhpbOgP"
+    "$id": "SJdpI6JNDT0Igrd8"
 }
 
 fetch(url, {
@@ -2030,7 +2731,7 @@ Parameter | Type | Status | Description
 curl -X GET -G "http://localhost/api/testdetail/page={page}&amp;limit={size}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"int":"vDAVsANVnbCZh8MJ"}'
+    -d '{"int":"GqHV1nVHlwZr7ihl"}'
 
 ```
 
@@ -2044,7 +2745,7 @@ let headers = {
 }
 
 let body = {
-    "int": "vDAVsANVnbCZh8MJ"
+    "int": "GqHV1nVHlwZr7ihl"
 }
 
 fetch(url, {
@@ -2082,7 +2783,7 @@ Parameter | Type | Status | Description
 curl -X POST "http://localhost/api/testdetail" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"Request":"DSJIAvy9nqZnC4G2"}'
+    -d '{"$request":"j4PFPLaAqvHFojPZ"}'
 
 ```
 
@@ -2096,7 +2797,7 @@ let headers = {
 }
 
 let body = {
-    "Request": "DSJIAvy9nqZnC4G2"
+    "$request": "j4PFPLaAqvHFojPZ"
 }
 
 fetch(url, {
@@ -2130,7 +2831,7 @@ fetch(url, {
 
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
-    Request | $request |  optional  | information of detailtest add
+    $request | Request |  optional  | information of detailtest add
 
 <!-- END_9fe878b7205450f5b14c759fa57c2bbb -->
 
@@ -2143,7 +2844,7 @@ Parameter | Type | Status | Description
 curl -X PUT "http://localhost/api/testdetail/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$request":"W7LXgq77zbbK8v4I","$id":"pk9AfvoTkSxaTo05"}'
+    -d '{"$request":"KjQuamb6NYLYmEL6","$id":"a8OInc1xzIMJTKMO"}'
 
 ```
 
@@ -2157,8 +2858,8 @@ let headers = {
 }
 
 let body = {
-    "$request": "W7LXgq77zbbK8v4I",
-    "$id": "pk9AfvoTkSxaTo05"
+    "$request": "KjQuamb6NYLYmEL6",
+    "$id": "a8OInc1xzIMJTKMO"
 }
 
 fetch(url, {
@@ -2206,7 +2907,7 @@ Parameter | Type | Status | Description
 curl -X DELETE "http://localhost/api/testdetail/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$id":"hInS7xZEVzTwyKt6"}'
+    -d '{"$id":"2xCtmgREiCsD23TN"}'
 
 ```
 
@@ -2220,7 +2921,7 @@ let headers = {
 }
 
 let body = {
-    "$id": "hInS7xZEVzTwyKt6"
+    "$id": "2xCtmgREiCsD23TN"
 }
 
 fetch(url, {
@@ -2258,21 +2959,21 @@ Parameter | Type | Status | Description
 
 <!-- END_555abb7753057c9ac1f04b86c3a03cb2 -->
 
-<!-- START_69c1db11f3d851882ae241ae048a4dc2 -->
-## Get list cart
+<!-- START_caabaf512c7eed9638a49733d34cfde6 -->
+## Get list order hidden id
 
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost/api/cart/page={page}&amp;limit={size}" \
+curl -X GET -G "http://localhost/api/orderwithoutid/page={page}&amp;limit={size}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$page":2,"$limit":14}'
+    -d '{"$page":13,"$limit":10}'
 
 ```
 
 ```javascript
-const url = new URL("http://localhost/api/cart/page={page}&amp;limit={size}");
+const url = new URL("http://localhost/api/orderwithoutid/page={page}&amp;limit={size}");
 
 let headers = {
     "Authorization": "Bearer: {token}",
@@ -2281,8 +2982,393 @@ let headers = {
 }
 
 let body = {
-    "$page": 2,
+    "$page": 13,
+    "$limit": 10
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+
+### HTTP Request
+`GET api/orderwithoutid/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_caabaf512c7eed9638a49733d34cfde6 -->
+
+<!-- START_41271a6ee2a362fa8eb134475878ff1b -->
+## Get list order sortby date recieved
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/ordersortdatere/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":11,"$limit":14}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/ordersortdatere/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 11,
     "$limit": 14
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+
+### HTTP Request
+`GET api/ordersortdatere/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_41271a6ee2a362fa8eb134475878ff1b -->
+
+<!-- START_921edb333f87bdc1c8d2bb0d00235c46 -->
+## Get list order sortby date ordered
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/ordersortdateor/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":13,"$limit":20}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/ordersortdateor/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 13,
+    "$limit": 20
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+
+### HTTP Request
+`GET api/ordersortdateor/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_921edb333f87bdc1c8d2bb0d00235c46 -->
+
+<!-- START_00c1a4de6784b00a1adde0ae5e05057f -->
+## Get list order sortby date recieved
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/ordersortdatere1/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":6,"$limit":2}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/ordersortdatere1/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 6,
+    "$limit": 2
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+
+### HTTP Request
+`GET api/ordersortdatere1/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_00c1a4de6784b00a1adde0ae5e05057f -->
+
+<!-- START_50d06a034ad7fe00a6abf3685696ee8d -->
+## Get list order sortby date ordered
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/ordersortdateor1/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":18,"$limit":3}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/ordersortdateor1/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 18,
+    "$limit": 3
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+
+### HTTP Request
+`GET api/ordersortdateor1/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_50d06a034ad7fe00a6abf3685696ee8d -->
+
+<!-- START_c08615e2e30d3df3f2c7b6bb6314db46 -->
+## Get list order
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/order/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":18,"$limit":5}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/order/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 18,
+    "$limit": 5
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+
+### HTTP Request
+`GET api/order/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_c08615e2e30d3df3f2c7b6bb6314db46 -->
+
+<!-- START_6b0d564c1aacd0d5850b844dee909c0d -->
+## Get store
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/storef/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":6,"$limit":14}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/storef/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 6,
+    "$limit": 14
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+> Example response (404):
+
+```json
+{
+    "message": "Stores get error."
+}
+```
+
+### HTTP Request
+`GET api/storef/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_6b0d564c1aacd0d5850b844dee909c0d -->
+
+<!-- START_8dee443be023ee107b27a476ac31450a -->
+## Get list cart
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/cartf/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":16,"$limit":5}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/cartf/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 16,
+    "$limit": 5
 }
 
 fetch(url, {
@@ -2322,6 +3408,80 @@ fetch(url, {
 ```
 
 ### HTTP Request
+`GET api/cartf/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | size page
+
+<!-- END_8dee443be023ee107b27a476ac31450a -->
+
+<!-- START_69c1db11f3d851882ae241ae048a4dc2 -->
+## Get list cart without id
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/cart/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":6,"$limit":18}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/cart/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 6,
+    "$limit": 18
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{
+    "success": true,
+    "data": {
+        "total": 1,
+        "page": 1,
+        "pageSize": "1",
+        "data": [
+            {
+                "ma_nguoi_dung": 1
+            }
+        ]
+    },
+    "message": "Carts retrieved successfully."
+}
+```
+> Example response (404):
+
+```json
+{
+    "message": "Cart get error."
+}
+```
+
+### HTTP Request
 `GET api/cart/page={page}&amp;limit={size}`
 
 #### Body Parameters
@@ -2342,7 +3502,7 @@ Parameter | Type | Status | Description
 curl -X POST "http://localhost/api/cart" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$request":"tIR1wld5dAmmOYyv"}'
+    -d '{"$request":"SyATlu9b4dkhrkCW"}'
 
 ```
 
@@ -2356,7 +3516,7 @@ let headers = {
 }
 
 let body = {
-    "$request": "tIR1wld5dAmmOYyv"
+    "$request": "SyATlu9b4dkhrkCW"
 }
 
 fetch(url, {
@@ -2408,7 +3568,7 @@ Parameter | Type | Status | Description
 curl -X PUT "http://localhost/api/cart/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$request":"hAodQVVZOA6sLSGu","$id":"7Iv6dAuhXs4V97Zd"}'
+    -d '{"$request":"MbS0Cj0GHaXU8z4x","$id":"EtC6aH6BNZlKnw2x"}'
 
 ```
 
@@ -2422,8 +3582,8 @@ let headers = {
 }
 
 let body = {
-    "$request": "hAodQVVZOA6sLSGu",
-    "$id": "7Iv6dAuhXs4V97Zd"
+    "$request": "MbS0Cj0GHaXU8z4x",
+    "$id": "EtC6aH6BNZlKnw2x"
 }
 
 fetch(url, {
@@ -2471,7 +3631,7 @@ Parameter | Type | Status | Description
 curl -X DELETE "http://localhost/api/cart/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$id":"NPZp142uaRiEq0QP"}'
+    -d '{"$id":"slJ0eByDcMcnqRfg"}'
 
 ```
 
@@ -2485,7 +3645,7 @@ let headers = {
 }
 
 let body = {
-    "$id": "NPZp142uaRiEq0QP"
+    "$id": "slJ0eByDcMcnqRfg"
 }
 
 fetch(url, {
@@ -2532,7 +3692,7 @@ Parameter | Type | Status | Description
 curl -X GET -G "http://localhost/api/cartdetail/{id}/page={page}&amp;limit={size}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$id":"ZplXPhccZcaxf5Ov","$page":9,"$limit":10}'
+    -d '{"$id":"LI8b5oLGF8rhWl8L","$page":14,"$limit":19}'
 
 ```
 
@@ -2546,9 +3706,9 @@ let headers = {
 }
 
 let body = {
-    "$id": "ZplXPhccZcaxf5Ov",
-    "$page": 9,
-    "$limit": 10
+    "$id": "LI8b5oLGF8rhWl8L",
+    "$page": 14,
+    "$limit": 19
 }
 
 fetch(url, {
@@ -2608,6 +3768,292 @@ Parameter | Type | Status | Description
 
 <!-- END_777bb3115e277efe2a5d2cdd808c4e59 -->
 
+<!-- START_3efb0f1dd46e9300ef5c1ab0a773b4e9 -->
+## Get detail-cart wihtout id
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/cartdetailid/{id}/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$id":"5LlFR9BQdi6y6sEt","$page":14,"$limit":10}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/cartdetailid/{id}/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$id": "5LlFR9BQdi6y6sEt",
+    "$page": 14,
+    "$limit": 10
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{
+    "success": true,
+    "data": {
+        "total": 3,
+        "page": 1,
+        "pageSize": "2",
+        "data": [
+            {
+                "so_luong": 2,
+                "san_pham_id": 1,
+                "gio_hang_id": 1
+            },
+            {
+                "so_luong": 3,
+                "san_pham_id": 2,
+                "gio_hang_id": 1
+            }
+        ]
+    },
+    "message": "CartDetails retrieved successfully."
+}
+```
+> Example response (404):
+
+```json
+{
+    "message": "CartCartDetail get error."
+}
+```
+
+### HTTP Request
+`GET api/cartdetailid/{id}/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $id | bigInt |  optional  | id-cart when want to get detail
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | size page
+
+<!-- END_3efb0f1dd46e9300ef5c1ab0a773b4e9 -->
+
+<!-- START_150b2f49c077903db352de98f25dbd15 -->
+## Get detail-cart wihtout id (gio_hang_id)
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/cartdetailid1/{id}/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$id":"cEjOzLW9djJCOdzB","$page":4,"$limit":5}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/cartdetailid1/{id}/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$id": "cEjOzLW9djJCOdzB",
+    "$page": 4,
+    "$limit": 5
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{
+    "success": true,
+    "data": {
+        "total": 3,
+        "page": 1,
+        "pageSize": "2",
+        "data": [
+            {
+                "so_luong": 2,
+                "san_pham_id": 1
+            },
+            {
+                "so_luong": 3,
+                "san_pham_id": 2
+            }
+        ]
+    },
+    "message": "CartDetails retrieved successfully."
+}
+```
+> Example response (404):
+
+```json
+{
+    "message": "CartCartDetail get error."
+}
+```
+
+### HTTP Request
+`GET api/cartdetailid1/{id}/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $id | bigInt |  optional  | id-cart when want to get detail
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | size page
+
+<!-- END_150b2f49c077903db352de98f25dbd15 -->
+
+<!-- START_6f59981c90a3ac828f15c434a877fa00 -->
+## Get product with sold
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/productban/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":10,"$limit":5}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/productban/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 10,
+    "$limit": 5
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+> Example response (404):
+
+```json
+{
+    "message": "Product get error."
+}
+```
+
+### HTTP Request
+`GET api/productban/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_6f59981c90a3ac828f15c434a877fa00 -->
+
+<!-- START_0085ce318e55d7ccc0d1fdffed0ad2eb -->
+## Get product with stored
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost/api/productton/page={page}&amp;limit={size}" \
+    -H "Authorization: Bearer: {token}" \
+    -H "Content-Type: application/json" \
+    -d '{"$page":4,"$limit":6}'
+
+```
+
+```javascript
+const url = new URL("http://localhost/api/productton/page={page}&amp;limit={size}");
+
+let headers = {
+    "Authorization": "Bearer: {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "$page": 4,
+    "$limit": 6
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+> Example response (200):
+
+```json
+{}
+```
+> Example response (404):
+
+```json
+{
+    "message": "Product get error."
+}
+```
+
+### HTTP Request
+`GET api/productton/page={page}&amp;limit={size}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    $page | integer |  optional  | page in
+    $limit | integer |  optional  | pageSize
+
+<!-- END_0085ce318e55d7ccc0d1fdffed0ad2eb -->
+
 <!-- START_f0654d3f2fc63c11f5723f233cc53c83 -->
 ## Add new user
 
@@ -2617,7 +4063,7 @@ Parameter | Type | Status | Description
 curl -X POST "http://localhost/api/user" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"Request":"ZNPprFVOUlQqgQpr"}'
+    -d '{"$request":"VWSJALkdp0qmMIDI"}'
 
 ```
 
@@ -2631,7 +4077,7 @@ let headers = {
 }
 
 let body = {
-    "Request": "ZNPprFVOUlQqgQpr"
+    "$request": "VWSJALkdp0qmMIDI"
 }
 
 fetch(url, {
@@ -2651,7 +4097,7 @@ fetch(url, {
 
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
-    Request | $request |  optional  | information of user add
+    $request | Request |  optional  | information of user add
 
 <!-- END_f0654d3f2fc63c11f5723f233cc53c83 -->
 
@@ -2664,7 +4110,7 @@ Parameter | Type | Status | Description
 curl -X PUT "http://localhost/api/user/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"Request":"EVLVfO2oaEQPFvFF","bigInt":"pnrvkfsGcVtEKft6"}'
+    -d '{"$request":"TYLqI71KQg1SgJFR","bigInt":"MZPsxVRLJq7gKmuY"}'
 
 ```
 
@@ -2678,8 +4124,8 @@ let headers = {
 }
 
 let body = {
-    "Request": "EVLVfO2oaEQPFvFF",
-    "bigInt": "pnrvkfsGcVtEKft6"
+    "$request": "TYLqI71KQg1SgJFR",
+    "bigInt": "MZPsxVRLJq7gKmuY"
 }
 
 fetch(url, {
@@ -2699,7 +4145,7 @@ fetch(url, {
 
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
-    Request | $request |  optional  | information of user update
+    $request | Request |  optional  | information of user update
     bigInt | $id |  optional  | of user
 
 <!-- END_538c59bd7094f21614fa40efbc87039d -->
@@ -2713,7 +4159,7 @@ Parameter | Type | Status | Description
 curl -X DELETE "http://localhost/api/user/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"bigInt":"UfW0PHojq9ttPkV6"}'
+    -d '{"$id":"4WnT1ixoJsEWzAtp"}'
 
 ```
 
@@ -2727,7 +4173,7 @@ let headers = {
 }
 
 let body = {
-    "bigInt": "UfW0PHojq9ttPkV6"
+    "$id": "4WnT1ixoJsEWzAtp"
 }
 
 fetch(url, {
@@ -2747,7 +4193,7 @@ fetch(url, {
 
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
-    bigInt | $id |  optional  | of user update
+    $id | bigInt |  optional  | of user update
 
 <!-- END_a1ef15db35f08591deb485d3c5fb9a31 -->
 
@@ -2760,7 +4206,7 @@ Parameter | Type | Status | Description
 curl -X POST "http://localhost/api/order" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$request":"zg6XOjmMXtY9A0OA"}'
+    -d '{"$request":"GTuBaVGEcvaIgfGQ"}'
 
 ```
 
@@ -2774,7 +4220,7 @@ let headers = {
 }
 
 let body = {
-    "$request": "zg6XOjmMXtY9A0OA"
+    "$request": "GTuBaVGEcvaIgfGQ"
 }
 
 fetch(url, {
@@ -2812,7 +4258,7 @@ Parameter | Type | Status | Description
 curl -X PUT "http://localhost/api/order/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$request":"VPtHGFOBxyW7d2sM","$id":"nJMXzM9eZGyYSPny"}'
+    -d '{"$request":"5BdiC4nIL66mJfTd","$id":"FrLcFx6FZ3pgpNMB"}'
 
 ```
 
@@ -2826,8 +4272,8 @@ let headers = {
 }
 
 let body = {
-    "$request": "VPtHGFOBxyW7d2sM",
-    "$id": "nJMXzM9eZGyYSPny"
+    "$request": "5BdiC4nIL66mJfTd",
+    "$id": "FrLcFx6FZ3pgpNMB"
 }
 
 fetch(url, {
@@ -2868,7 +4314,7 @@ Parameter | Type | Status | Description
 curl -X GET -G "http://localhost/api/total/{id}" \
     -H "Authorization: Bearer: {token}" \
     -H "Content-Type: application/json" \
-    -d '{"$id":"m4yxtepyUO1c4d5p"}'
+    -d '{"$id":"MyIh2A7RrX0UuUl3"}'
 
 ```
 
@@ -2882,7 +4328,7 @@ let headers = {
 }
 
 let body = {
-    "$id": "m4yxtepyUO1c4d5p"
+    "$id": "MyIh2A7RrX0UuUl3"
 }
 
 fetch(url, {

@@ -23,7 +23,7 @@ class AuthController extends Controller
      * "expires_at": "2020-04-15 11:25:22"
      * }
      * @response 404 {
-     *  message": "Unauthorized""
+     *  message": "Unauthorized"
      * } 
      */
 
@@ -57,17 +57,34 @@ class AuthController extends Controller
     /**
      * Register 
      * @bodyParam $request Request infomation of user (ho_ten,email,password,so_dien_thoai,dia_chi,password_confirmation)
+     * @response{
+     * "message": "Successfully created user!",
+     * "token_type": "Bearer",
+     * "expires_at": "2020-04-15 11:25:22"
+     * }
+     * @response 404 {
+     *  "message": "Validation Error"
+     * }  
      */
     public function register(Request $request)
     {
-//     $request->validate([
-// 	'ho_ten' => 'required|string',
-// 	'email' => 'required|string|email|unique:nguoi_dung',
-//     'password' => 'required|between:8,255|confirmed',
-//     'so_dien_thoai' => 'required|string',
-//     'dia_chi' => 'required|string',
-// 	'password_confirmation' => 'required ',
-// ]); 
+$input = $request->all();
+
+$validator = Validator::make($input, [
+    'ho_ten' => 'required|string',
+	'email' => 'required|string|email|unique:nguoi_dung',
+    'password' => 'required|between:8,255|confirmed',
+    'so_dien_thoai' => 'required|string',
+    'dia_chi' => 'required|string',
+	'password_confirmation' => 'required ',
+       
+]);
+
+if($validator->fails()){
+    return $this->sendError('Validation Error.', $validator->errors());       
+}
+
+
 {
     $user = User::create([
       'ho_ten'     => $request['ho_ten'],
@@ -84,8 +101,6 @@ class AuthController extends Controller
        return response()->json([
         'message' => 'Successfully created user!','user'=>$user
    ], 201);
-   return response()->json([
-    'message' => 'Successfully created user!']);
 }	
  }
     }

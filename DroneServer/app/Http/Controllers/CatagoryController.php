@@ -47,6 +47,50 @@ class CatagoryController extends BaseController
        
     }
 
+ /**
+     * Get list catagory hidden id
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response
+     * {
+     * "sucess": true
+     * "data":....
+     * "message": "Catagories retrieved successfully."
+     * }
+     * @response 404
+     * {
+     * "message":"Catagories get error."
+     * }
+     */
+
+    public function indexid($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $catagorys = Catagory::paginate($limit);
+     $catagory1 = $catagorys->getCollection();
+     $count = count( $catagory1);
+     $catagory1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['ten_danh_muc']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$catagory1;
+     if($result['data']==!null)
+     {
+       
+      return $this->sendResponse($result, 'Catagories retrieved successfully.'); 
+     }
+    else
+    {
+        return response()->json(['message'=>'Catagories get error.']);
+    }
+     
+  }
+
+
      /**
      * Add new catagory
      * @bodyParam $request Request information of catafory add(ten_danh_muc)

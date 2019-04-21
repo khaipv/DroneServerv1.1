@@ -49,6 +49,52 @@ class StoreController extends BaseController
        
     }
   
+
+
+ /**
+     * Get store 
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Stores retrieved successfully."
+     * }
+     * @response 404
+     * {
+     * 
+     * "message":"Stores get error."
+     * 
+     * } 
+     */
+
+    public function indexid($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $stores = Store::paginate($limit);
+     $store1 = $stores->getCollection();
+     $count = count( $store1);
+     $store1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['sdt','dia_chi','email','nguoi_dung_id']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$store1;
+     if($result['data']==!null)
+     {
+       
+        return $this->sendResponse($result, 'Stores retrieved successfully.');
+     }
+    else
+    {
+        return response()->json(['message'=>'Stores get error.']);
+    }
+       
+    }
+
    /**
      * Add new store 
      * @bodyParam $request Request information of store add(dia_chi,email,sdt,nguoi_dung_id)

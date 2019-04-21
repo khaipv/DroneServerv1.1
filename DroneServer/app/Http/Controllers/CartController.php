@@ -55,6 +55,59 @@ class CartController extends BaseController
        } 
     }
 
+/**
+     * Get list cart without id
+     * @bodyParam $page int page in 
+     * @bodyParam $limit int size page 
+     * @response {
+     * "success": true,
+     * "data": {
+     * "total": 1,
+     * "page": 1,
+     * "pageSize": "1",
+     * "data": [
+     *       {
+     *           "ma_nguoi_dung": 1
+     *       } 
+     *   ]
+     * },
+     * "message": "Carts retrieved successfully."
+     * }
+     * @response 404 {
+     *  "message": "Cart get error."
+     * }
+     */
+
+    public function indexid($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $carts = Cart::paginate($limit);
+     $cart1 = $carts->getCollection();
+     $count = count( $cart1);
+     $cart1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['ma_nguoi_dung']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$cart1;
+     if( $result['data']==!null)
+     {
+     return $this->sendResponse($result, 'Carts retrieved successfully.');
+     }
+     else
+     {
+       return response()->json(['message'=>'Cart get error.']);
+     } 
+  }
+
+
+
+
+
+
  /**
      * Add new cart 
      * @bodyParam $request Request infomation of cart added(ma_nguoi_dung)
@@ -193,6 +246,122 @@ class CartController extends BaseController
       }  
    
     }
+
+/**
+     * Get detail-cart wihtout id
+     * @bodyParam $id bigInt id-cart when want to get detail
+     * @bodyParam $page int page in 
+     * @bodyParam $limit int size page 
+     * @response {
+     * "success": true,
+     * "data": {
+     *   "total": 3,
+     *   "page": 1,
+     *   "pageSize": "2",
+     *   "data": [
+     *       {
+     *           "so_luong": 2,
+     *           "san_pham_id": 1,
+     *           "gio_hang_id": 1
+     *       },
+     *       {
+     *           "so_luong": 3,
+     *           "san_pham_id": 2,
+     *           "gio_hang_id": 1
+     *       }
+     *   ]
+     * },
+     * "message": "CartDetails retrieved successfully."
+     * }
+     * @response 404 {
+     *  "message": "CartCartDetail get error."
+     * }
+     */
+
+    public function getdetailcartid($id,$page,$limit)
+    {     
+      Paginator::currentPageResolver(function() use ($page) {
+         return $page;
+     });
+      $cartdetail= CartDetail::where('gio_hang_id',$id)->paginate($limit);
+      $cartdetail1 = $cartdetail->getCollection();
+      $count = count( $cartdetail1);
+      $cartdetail1->each(function ($item) {
+         $item->setHidden(['id'])->setVisible(['so_luong','gio_hang_id','san_pham_id']);
+     }); 
+      $result['total'] = $count;
+      $result['page'] = $page;
+      $result['pageSize'] = $limit;
+      $result['data']=$cartdetail1;
+      if( $result['data']==!null)
+      {
+      return $this->sendResponse($result, 'CartDetails retrieved successfully.');
+      }
+      else
+      {
+        return response()->json(['message'=>'CartCartDetail get error.']);
+      }  
+   
+    }
+
+
+
+    
+/**
+     * Get detail-cart wihtout id (gio_hang_id)
+     * @bodyParam $id bigInt id-cart when want to get detail
+     * @bodyParam $page int page in 
+     * @bodyParam $limit int size page 
+     * @response {
+     * "success": true,
+     * "data": {
+     *   "total": 3,
+     *   "page": 1,
+     *   "pageSize": "2",
+     *   "data": [
+     *       {
+     *           "so_luong": 2,
+     *           "san_pham_id": 1     
+     *       },
+     *       {
+     *           "so_luong": 3,
+     *           "san_pham_id": 2
+     *       }
+     *   ]
+     * },
+     * "message": "CartDetails retrieved successfully."
+     * }
+     * @response 404 {
+     *  "message": "CartCartDetail get error."
+     * }
+     */
+
+    public function getdetailcartid1($id,$page,$limit)
+    {     
+      Paginator::currentPageResolver(function() use ($page) {
+         return $page;
+     });
+      $cartdetail= CartDetail::where('gio_hang_id',$id)->paginate($limit);
+      $cartdetail1 = $cartdetail->getCollection();
+      $count = count( $cartdetail1);
+      $cartdetail1->each(function ($item) {
+         $item->setHidden(['id','gio_hang_id'])->setVisible(['so_luong','san_pham_id']);
+     }); 
+      $result['total'] = $count;
+      $result['page'] = $page;
+      $result['pageSize'] = $limit;
+      $result['data']=$cartdetail1;
+      if( $result['data']==!null)
+      {
+      return $this->sendResponse($result, 'CartDetails retrieved successfully.');
+      }
+      else
+      {
+        return response()->json(['message'=>'CartCartDetail get error.']);
+      }  
+   
+    }
+
 
      /**
      * Get total-money 

@@ -15,6 +15,16 @@ class UserController extends BaseController
      * Get list user 
      * @bodyParam $page int page in
      * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Users retrieved successfully."
+     * }
+     * @response 404{
+     * 
+     * "message":"Users get error."
+     * 
+     * } 
      */
    public function index($page,$limit)
     {      
@@ -37,12 +47,223 @@ class UserController extends BaseController
      }
     }
 
+/**
+     * Get list user hidden id
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Users retrieved successfully."
+     * }
+     * @response 404{
+     * 
+     * "message":"Users get error."
+     * 
+     * } 
+     */
+    public function indexwithoutid($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $users = User::paginate($limit);
+     $user1 = $users->getCollection();
+     $count = count( $user1);
+     $user1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['ho_ten','email','password','so_dien_thoai','dia_chi','vai_tro_id']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page->currentPage();
+     $result['pageSize'] = $limit->perPage();
+     $result['data']=$user1;
+     if($result['data']==!null)
+     {
+      return $this->sendResponse($result, 'Users retrieved successfully.'); 
+     }
+     else
+     {
+      return response()->json(['message'=>'User get error.']);
+     }
+    }
+
+
+
+    /**
+     * Get list user hidden id,password
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Users retrieved successfully."
+     * }
+     * @response 404{
+     * 
+     * "message":"Users get error."
+     * 
+     * } 
+     */
+    public function indexwithoutpass($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $users = User::paginate($limit);
+     $user1 = $users->getCollection();
+     $count = count( $user1);
+     $user1->each(function ($item) {
+        $item->setHidden(['id','password'])->setVisible(['ho_ten','email','so_dien_thoai','dia_chi','vai_tro_id']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page->currentPage();
+     $result['pageSize'] = $limit->perPage();
+     $result['data']=$user1;
+     if($result['data']==!null)
+     {
+      return $this->sendResponse($result, 'Users retrieved successfully.'); 
+     }
+     else
+     {
+      return response()->json(['message'=>'User get error.']);
+     }
+    }
+
+     /**
+     * Get list user hidden id,password,email
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Users retrieved successfully."
+     * }
+     * @response 404{
+     * 
+     * "message":"Users get error."
+     * 
+     * } 
+     */
+    public function indexwithoutemail($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $users = User::paginate($limit);
+     $user1 = $users->getCollection();
+     $count = count( $user1);
+     $user1->each(function ($item) {
+        $item->setHidden(['id','password','email'])->setVisible(['ho_ten','so_dien_thoai','dia_chi','vai_tro_id']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page->currentPage();
+     $result['pageSize'] = $limit->perPage();
+     $result['data']=$user1;
+     if($result['data']==!null)
+     {
+      return $this->sendResponse($result, 'Users retrieved successfully.'); 
+     }
+     else
+     {
+      return response()->json(['message'=>'User get error.']);
+     }
+    }
       
+/**
+     * Get list user hidden id,password,email,role
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Users retrieved successfully."
+     * }
+     * @response 404{
+     * 
+     * "message":"Users get error."
+     * 
+     * } 
+     */
+    public function indexwithout2($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $users = User::paginate($limit);
+     $user1 = $users->getCollection();
+     $count = count( $user1);
+     $user1->each(function ($item) {
+        $item->setHidden(['id','password','email','vai_tro_id'])->setVisible(['ho_ten','so_dien_thoai','dia_chi']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page->currentPage();
+     $result['pageSize'] = $limit->perPage();
+     $result['data']=$user1;
+     if($result['data']==!null)
+     {
+      return $this->sendResponse($result, 'Users retrieved successfully.'); 
+     }
+     else
+     {
+      return response()->json(['message'=>'User get error.']);
+     }
+    }
+
+    /**
+     * Get list user hidden id,password,email,role
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Users retrieved successfully."
+     * }
+     * @response 404{
+     * 
+     * "message":"Users get error."
+     * 
+     * } 
+     */
+    public function indexwithout3($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $users = User::paginate($limit);
+     $user1 = $users->getCollection();
+     $count = count( $user1);
+     $user1->each(function ($item) {
+        $item->setHidden(['id','password','email','vai_tro_id','so_dien_thoai','dia_chi'])->setVisible(['ho_ten']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page->currentPage();
+     $result['pageSize'] = $limit->perPage();
+     $result['data']=$user1;
+     if($result['data']==!null)
+     {
+      return $this->sendResponse($result, 'Users retrieved successfully.'); 
+     }
+     else
+     {
+      return response()->json(['message'=>'User get error.']);
+     }
+    }
+
    /**
      * Get user with role 
      * @bodyParam bigInt $id id of role
      * @bodyParam int $page page int
      * @bodyParam int $limit pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Users retrieved successfully."
+     * }
+     * @response 404{
+     * 
+     * "message":"Users get error."
+     * 
+     * }  
      */
     public function indexrole($id,$page,$limit)
     {      
@@ -67,7 +288,7 @@ class UserController extends BaseController
   
    /**
      * Add new user
-     * @bodyParam Request $request information of user add
+     * @bodyParam $request Request information of user add
      */
     public function insert(Request $request)
     {         
@@ -88,7 +309,7 @@ class UserController extends BaseController
       
    /**
      * Update old user 
-     * @bodyParam Request $request information of user update
+     * @bodyParam $request Request information of user update
      * @bodyParam bigInt $id of user
      */
     public function update(Request $request, $id)
@@ -109,7 +330,7 @@ class UserController extends BaseController
       
    /**
      * Delete user 
-     * @bodyParam bigInt $id of user update 
+     * @bodyParam $id bigInt of user update 
      */
     
     public function delete($id)
@@ -119,11 +340,11 @@ class UserController extends BaseController
       
        if($user->delete())
        {
-         return response()->json(['sucess'=>'user deleted sucessfully.']);
+         return response()->json(['message'=>'User deleted sucessfully.']);
        }
       else
        {
-         return response()->json(['sucess'=>'test deleted error.']);
+         return response()->json(['message'=>'User deleted error.']);
        }  
       
     }  

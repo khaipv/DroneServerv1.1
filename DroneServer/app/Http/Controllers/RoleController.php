@@ -48,6 +48,52 @@ class RoleController extends BaseController
     }
     
   
+/**
+     * Get list role witout id
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response
+     * {
+     * "sucess": true
+     * "data":"..."
+     * "message":"Roles retrieved successfully."
+     * }
+     * @respose 404
+     * {
+     * "message":"Roles get error."
+     * }
+     */
+    public function indexid($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $roles = Role::paginate($limit);
+     $role1 = $roles->getCollection();
+     $count = count( $role1);
+     $role1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['ten_vai_tro']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$roles;
+     if($result['data']==!null)
+     {
+       
+        return $this->sendResponse($result, 'Roles retrieved successfully.');
+     }
+    else
+    {
+        return response()->json(['message'=>'Roles get error.']);
+    }
+    
+    }
+    
+
+
+
+
    /**
      * Add new role 
      * @bodyParam $request Request information of role add(ten_vai_tro)

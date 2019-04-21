@@ -263,4 +263,307 @@ class ProductController extends BaseController
        return response()->json( $prices);
       
     }  
+
+
+
+
+    /**
+     * Get product hiden some infomation()
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Products retrieved successfully."
+     * }
+     * @response 404{
+     * 
+     * "message":"Product get error."
+     * 
+     * }
+     */   
+     public function indexname($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $products = Product::paginate($limit);
+     $product1 = $products->getCollection();
+     $count = count( $product1);
+     $product1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['danh_muc_id','nha_cung_cap_id','ten_san_pham','don_gia','mo_ta_chung']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$product1;
+     if($result['data']==!null)
+     {
+       
+        return $this->sendResponse( $result, 'Products retrieved successfully.');
+    }
+    else
+    {
+        return response()->json(['message'=>'Product get error.']);
+    }
+   
+    }
+
+ /**
+     * Get product with sold
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Products retrieved successfully."
+     * }
+     * @response 404{
+     * 
+     * "message":"Product get error."
+     * 
+     * }
+     */   
+    public function indexban($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $products = Product::paginate($limit);
+     $product1 = $products->getCollection();
+     $count = count( $product1);
+     $product1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['danh_muc_id','nha_cung_cap_id','ten_san_pham','don_gia','mo_ta_chung','don_vi_ban']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$product1;
+     if($result['data']==!null)
+     {
+       
+        return $this->sendResponse( $result, 'Products retrieved successfully.');
+    }
+    else
+    {
+        return response()->json(['message'=>'Product get error.']);
+    }
+   
+    }
+
+     /**
+     * Get product with stored
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Products retrieved successfully."
+     * }
+     * @response 404{
+     * 
+     * "message":"Product get error."
+     * 
+     * }
+     */   
+    public function indexton($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $products = Product::paginate($limit);
+     $product1 = $products->getCollection();
+     $count = count( $product1);
+     $product1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['danh_muc_id','nha_cung_cap_id','ten_san_pham','don_gia','mo_ta_chung','don_vi_ton_kho']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$product1;
+     if($result['data']==!null)
+     {
+       
+        return $this->sendResponse( $result, 'Products retrieved successfully.');
+    }
+    else
+    {
+        return response()->json(['message'=>'Product get error.']);
+    }
+   
+    }
+
+
+
+     /**
+     * Get list id product
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Id products retrieved successfully."
+     * }
+     * @response 404{
+     * 
+     * "message":"Id products get error."
+     * 
+     * }
+     */   
+    public function indexid($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $products = Product::paginate($limit);
+     $product1 = $products->getCollection();
+     $count = count( $product1);
+     $product1->each(function ($item) {
+        $item->setHidden([])->setVisible(['id','danh_muc_id','nha_cung_cap_id','ten_san_pham','don_gia','mo_ta_chung']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$product1;
+     if($result['data']==!null)
+     {
+       
+        return $this->sendResponse( $result, 'Id products retrieved successfully.');
+    }
+    else
+    {
+        return response()->json(['message'=>'Id products get error.']);
+    }
+   
+    }
+
+  /**
+     * Get list name product is sorted by abc 
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Name-products retrieved successfully."
+     * }
+     * @response 404{
+     * 
+     * "message":"Name-products get error."
+     * 
+     * }
+     */   
+    public function indexnamesort($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $products = Product::orderBy('ten_san_pham')->paginate($limit);
+     $product1 = $products->getCollection();
+     $count = count( $product1);
+     $product1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['danh_muc_id','nha_cung_cap_id','ten_san_pham','don_gia','mo_ta_chung']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$product1;
+     if($result['data']==!null)
+     {
+       
+        return $this->sendResponse( $result, 'Name-products retrieved successfully.');
+    }
+    else
+    {
+        return response()->json(['message'=>'Name-products get error.']);
+    }
+   
+    }
+
+/**
+     * Get list prices product is sorted increased value 
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Prices-products retrieved successfully."
+     * }
+     * @response 404{
+     * 
+     * "message":"Prices-products get error."
+     * 
+     * }
+     */   
+    public function indexpricessortincre($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $products = Product::orderBy('don_gia')->paginate($limit);
+     $product1 = $products->getCollection();
+     $count = count( $product1);
+     $product1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['danh_muc_id','nha_cung_cap_id','ten_san_pham','don_gia','mo_ta_chung']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$product1;
+     if($result['data']==!null)
+     {
+       
+        return $this->sendResponse( $result, 'Prices-products retrieved successfully.');
+    }
+    else
+    {
+        return response()->json(['message'=>'Princes-products get error.']);
+    }
+   
+    }
+
+    /**
+     * Get list prices product is sorted increased value 
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Prices-products retrieved successfully."
+     * }
+     * @response 404{
+     * 
+     * "message":"Prices-products get error."
+     * 
+     * }
+     */   
+    public function indexpricessortdeincre($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $products = Product::orderBy('don_gia','DESC')->paginate($limit);
+     $product1 = $products->getCollection();
+     $count = count( $product1);
+     $product1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['danh_muc_id','nha_cung_cap_id','ten_san_pham','don_gia','mo_ta_chung']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$product1;
+     if($result['data']==!null)
+     {
+       
+        return $this->sendResponse( $result, 'Prices-products retrieved successfully.');
+    }
+    else
+    {
+        return response()->json(['message'=>'Princes-products get error.']);
+    }
+   
+    }
+
+
+
+
 }

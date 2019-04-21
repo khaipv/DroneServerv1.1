@@ -165,6 +165,8 @@ class OrderController extends BaseController
     }
     }
 
+
+
   /**
      * Add new order 
      * @bodyParam $request Request information of order add
@@ -299,4 +301,216 @@ class OrderController extends BaseController
   return response()->json(['message'=>'OrderDetails get error.']);
   }
     }
+
+ /**
+     * Get list order hidden id
+     * @bodyParam $page int  page in
+     * @bodyParam $limit int pageSize
+     * @response
+     * {
+     * "sucess": true
+     * "data":"..."
+     * "message":"Orders retrieved successfully."
+     * }
+     * @respose 404
+     * {
+     * "message":"Orders get error."
+     * }
+     */
+
+    public function indexwithouid($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $orders = Order::paginate($limit);
+     $order1 = $orders->getCollection();
+     $count = count( $order1);
+     $order1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['dia_chi_nhan','ngay_dat','ngay_nhan','sdt_nhan_hang','trang_thai','nguoi_dung_id']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$order1;
+       if($result['data']==!null)
+     {
+       
+      return $this->sendResponse($result, 'Orders retrieved successfully.');
+     }
+    else
+    {
+        return response()->json(['message'=>'Orders get error.']);
+    }
+    }
+
+/**
+     * Get list order sortby date recieved
+     * @bodyParam $page int  page in
+     * @bodyParam $limit int pageSize
+     * @response
+     * {
+     * "sucess": true
+     * "data":"..."
+     * "message":"Orders retrieved successfully."
+     * }
+     * @respose 404
+     * {
+     * "message":"Orders get error."
+     * }
+     */
+
+    public function indexsortbydatere($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $orders = Order::orderBy('ngay_nhan','ASC')->paginate($limit);
+     $order1 = $orders->getCollection();
+     $count = count( $order1);
+     $order1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['dia_chi_nhan','ngay_dat','ngay_nhan','sdt_nhan_hang','trang_thai','nguoi_dung_id']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$order1;
+       if($result['data']==!null)
+     {
+       
+      return $this->sendResponse($result, 'Orders retrieved successfully.');
+     }
+    else
+    {
+        return response()->json(['message'=>'Orders get error.']);
+    }
+    }
+
+/**
+     * Get list order sortby date recieved
+     * @bodyParam $page int  page in
+     * @bodyParam $limit int pageSize
+     * @response
+     * {
+     * "sucess": true
+     * "data":"..."
+     * "message":"Orders retrieved successfully."
+     * }
+     * @respose 404
+     * {
+     * "message":"Orders get error."
+     * }
+     */
+
+    public function indexsortbydatere1($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $orders = Order::orderBy('ngay_nhan','DESC')->paginate($limit);
+     $order1 = $orders->getCollection();
+     $count = count( $order1);
+     $order1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['dia_chi_nhan','ngay_dat','ngay_nhan','sdt_nhan_hang','trang_thai','nguoi_dung_id']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$order1;
+       if($result['data']==!null)
+     {
+       
+      return $this->sendResponse($result, 'Orders retrieved successfully.');
+     }
+    else
+    {
+        return response()->json(['message'=>'Orders get error.']);
+    }
+    }
+
+
+/**
+     * Get list order sortby date ordered
+     * @bodyParam $page int  page in
+     * @bodyParam $limit int pageSize
+     * @response
+     * {
+     * "sucess": true
+     * "data":"..."
+     * "message":"Orders retrieved successfully."
+     * }
+     * @respose 404
+     * {
+     * "message":"Orders get error."
+     * }
+     */
+
+    public function indexsortbydateor($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $orders = Order::orderBy('ngay_dat','ASC')->paginate($limit);
+     $order1 = $orders->getCollection();
+     $count = count( $order1);
+     $order1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['dia_chi_nhan','ngay_dat','ngay_nhan','sdt_nhan_hang','trang_thai','nguoi_dung_id']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$order1;
+       if($result['data']==!null)
+     {
+       
+      return $this->sendResponse($result, 'Orders retrieved successfully.');
+     }
+    else
+    {
+        return response()->json(['message'=>'Orders get error.']);
+    }
+    }
+
+    /**
+     * Get list order sortby date ordered 
+     * @bodyParam $page int  page in
+     * @bodyParam $limit int pageSize
+     * @response
+     * {
+     * "sucess": true
+     * "data":"..."
+     * "message":"Orders retrieved successfully."
+     * }
+     * @respose 404
+     * {
+     * "message":"Orders get error."
+     * }
+     */
+
+    public function indexsortbydateor1($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $orders = Order::orderBy('ngay_dat','DESC')->paginate($limit);
+     $order1 = $orders->getCollection();
+     $count = count( $order1);
+     $order1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['dia_chi_nhan','ngay_dat','ngay_nhan','sdt_nhan_hang','trang_thai','nguoi_dung_id']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$order1;
+       if($result['data']==!null)
+     {
+       
+      return $this->sendResponse($result, 'Orders retrieved successfully.');
+     }
+    else
+    {
+        return response()->json(['message'=>'Orders get error.']);
+    }
+    }
+
 }
