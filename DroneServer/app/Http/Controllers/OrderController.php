@@ -206,6 +206,47 @@ class OrderController extends BaseController
  
     }
 
+/**
+     * Add new order-detail
+     * @bodyParam $request Request information of order add
+     * @response
+     * {
+     * "sucess": true
+     * "data":"..."
+     * "message":"Order detail created successfully."
+     * }
+     * @respose 404
+     * {
+     * "message":"Validation Error."
+     * }
+     */
+
+
+    public function insertdetail(Request $request)
+    {         
+    
+      $input = $request->all();
+ 
+      $validator = Validator::make($input, [
+          'so_luong' => 'required',
+          'don_gia' => 'required',
+          'san_pham_id'=>'required',
+          'don_hang_id' =>'required',      
+      ]);
+ 
+      if($validator->fails()){
+          return $this->sendError('Validation Error.', $validator->errors());       
+      }
+ 
+      $order = OrderDetail::create($input);
+ 
+ 
+      return $this->sendResponse($order->toArray(), 'Order-detail created successfully.');
+ 
+    }
+
+
+
      /**
      * Update old order
      * @bodyParam $request Request information update
@@ -237,6 +278,36 @@ class OrderController extends BaseController
 
 
      /**
+     * Update old order-detail
+     * @bodyParam $request Request information update
+     * @bodyParam $id bigInt id of order update
+     * @response
+     * {
+     * "message":"Order-detail updated successfully."
+     * }
+     * @respose 404
+     * {
+     * "message":"Order-detail updated error."
+     * }
+     */
+
+
+    public function updatedetail(Request $request, $id)
+    {
+       $order = new OrderDetail();
+       $order = OrderDetail::findOrFail($id);     
+       if($order->update($request->all()))
+       {
+        return response()->json(['message'=>'Order-detail updated successfully.']);
+       }
+       else
+       {
+        return response()->json(['message'=>'Order-detail updated error.']);
+       }
+    } 
+
+
+     /**
      * Delete order with id
      * @bodyParam $id bigInt id-order delete
      * @response
@@ -253,13 +324,42 @@ class OrderController extends BaseController
     {
        $order = new Order();
        $order = Order::findOrFail($id);
-       if($order->delete())
+       $orderdetail= OrderDetail::where('don_hang_id',$id);
+       if(($orderdetail->delete())&&($order->delete()))
        {
        return response()->json(['message'=>'Order deleted sucessfully.']);
        }
        else
        {
         return response()->json(['message'=>'Order deleted error.']);
+       }
+    }  
+    
+
+     /**
+     * Delete order-detail with id
+     * @bodyParam $id bigInt id-order delete
+     * @response
+     * {
+     * "message":"Order-detail deleted sucessfully."
+     * }
+     * @respose 404
+     * {
+     * "message":"Order-detail deleted error."
+     * }
+     */
+
+    public function deletedetail($id)
+    {
+       $order = new OrderDetail();
+       $order = OrderDetail::findOrFail($id);
+       if($order->delete())
+       {
+       return response()->json(['message'=>'Order-detail deleted sucessfully.']);
+       }
+       else
+       {
+        return response()->json(['message'=>'Order-detail deleted error.']);
        }
     }  
     

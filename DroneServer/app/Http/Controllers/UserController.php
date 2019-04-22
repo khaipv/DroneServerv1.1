@@ -210,7 +210,7 @@ class UserController extends BaseController
     }
 
     /**
-     * Get list user hidden id,password,email,role
+     * Get list user hidden id,password,email,role,phone
      * @bodyParam $page int page in
      * @bodyParam $limit int pageSize
      * @response {

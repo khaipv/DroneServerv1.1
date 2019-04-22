@@ -141,6 +141,8 @@ class CartController extends BaseController
       return $this->sendResponse($cart->toArray(), 'Cart created successfully.');
     }
 
+
+    
      /**
      * Update old cart 
      * @bodyParam $request Request infomation update(ma_nguoi_dung)
@@ -168,6 +170,31 @@ class CartController extends BaseController
       
     } 
 
+    /**
+     * Update old cart-detail 
+     * @bodyParam $request Request infomation update(ma_nguoi_dung)
+     * @bodyParam $id bigInt id-cart to update
+     * @response {
+     *  "message": "Cart-detail updated sucessfully."
+     * }
+     * @response 404 {
+     *  "message": "Cart-detail updated error."
+     * }
+     */
+
+    public function updatedetail(Request $request, $id)
+    {
+       $cart = new CartDetail();
+       $cart = CartDetail::findOrFail($id);
+       if($cart->update($request->all()))
+       {
+         return response()->json(['message'=>'Cart-detail updated sucessfully.']);
+       }
+       else
+       {
+         return response()->json(['message'=>'Cart-detail updated error.']);
+       }
+    }
      /**
      * Delete cart with id
      * @bodyParam $id bigInt id cart to delete
@@ -182,7 +209,8 @@ class CartController extends BaseController
     {
        $cart = new Cart();
        $cart = Cart::findOrFail($id);
-       if($cart->delete())
+       $cartdetail= CartDetail::where('gio_hang_id',$id);
+       if(($cartdetail->delete())&&($cart->delete()))
        {
          return response()->json(['message'=>'Cart deleted sucessfully.']);
        }
@@ -192,6 +220,29 @@ class CartController extends BaseController
        }
     } 
 
+     /**
+     * Delete cart-detail with id
+     * @bodyParam $id bigInt id cart to delete
+     * @response {
+     *  "message": "Cart-detail deleted sucessfully."
+     * }
+     * @response 404 {
+     *  "message": "Cart-detail deleted error."
+     * }
+     */
+    public function deletedetail($id)
+    {
+       $cart = new CartDetail();
+       $cart = CartDetail::findOrFail($id); 
+       if(($cart->delete()))
+       {
+         return response()->json(['message'=>'Cart-detail deleted sucessfully.']);
+       }
+       else
+       {
+       return response()->json(['message'=>'Cart-detail deleted error.']);
+       }
+    } 
      /**
      * Get detail-cart 
      * @bodyParam $id bigInt id-cart when want to get detail
@@ -305,6 +356,39 @@ class CartController extends BaseController
     }
 
 
+
+    /**
+     * Add new cart-detail 
+     * @bodyParam $request Request infomation of cart added(ma_nguoi_dung)
+     * @response {
+     *  "success": true,
+     *   "data":"..."
+     * },
+     *  "message": "CartDetail created successfully."
+     * }
+     * @response 404 {
+     *  "message": "Validation Error."
+     * }
+     */
+    public function insertdetail(Request $request)
+    {         
+      $input = $request->all();
+ 
+      $validator = Validator::make($input, [
+          'so_luong' => 'required',
+          'san_pham_id' => 'required',
+          'gio_hang_id' => 'required',
+          
+      ]);
+ 
+      if($validator->fails()){
+          return $this->sendError('Validation Error.', $validator->errors());       
+      }
+ 
+      $cart = CartDetail::create($input);
+ 
+      return $this->sendResponse($cart->toArray(), 'CartDetail created successfully.');
+    }
 
     
 /**

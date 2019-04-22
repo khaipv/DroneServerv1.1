@@ -90,6 +90,7 @@ Route::group(['middleware' => ['auth:api','employee']], function() {
         Route::put('/catagory/{id}',"CatagoryController@update");
         Route::delete('/catagory/{id}', "CatagoryController@delete");
         Route::delete("/order/{id}","OrderController@delete");
+       
         Route::post("/test","TestController@insert");
         Route::get("/roleid/page={page}&limit={size}","RoleController@indexid");
         Route::get("/orderdetail/{id}/page={page}&limit={size}","OrderController@getdetailorder");
@@ -115,8 +116,12 @@ Route::group(['middleware' => ['auth:api','customer']], function() {
         Route::get('logout', 'AuthController@logout');
         Route::get("/cart/page={page}&limit={size}","CartController@indexid");
         Route::post("/cart","CartController@insert");
+        Route::post("/cartdetail","CartController@insertdetail");
+        Route::post("/cartdetail","CartController@insertdetail");
         Route::put('/cart/{id}',"CartController@update");
+        Route::put('/cartdetail/{id}',"CartController@updatedetail");
         Route::delete('/cart/{id}', "CartController@delete");
+        Route::delete('/cartdetail/{id}', "CartController@deletedetail");
         Route::get("/cartdetail/{id}/page={page}&limit={size}","CartController@getdetailcart");
         Route::get("/cartdetailid/{id}/page={page}&limit={size}","CartController@getdetailcartid");  
         Route::get("/cartdetailid1/{id}/page={page}&limit={size}","CartController@getdetailcartid1"); 
@@ -126,7 +131,10 @@ Route::group(['middleware' => ['auth:api','customer']], function() {
         Route::put('/user/{id}',"UserController@update");
         Route::delete('/user/{id}', "UserController@delete");
         Route::post("/order","OrderController@insert");
+        Route::post("/orderdetail","OrderController@insertdetail");
         Route::put("/order/{id}","OrderController@update");
+        Route::put("/orderdetail/{id}","OrderController@updatedetail");
+        Route::delete("/orderdetail/{id}","OrderController@deletedetail");
         Route::get("/orderdetail/{id}/page={page}&limit={size}","OrderController@getdetailorder");
         Route::post("/test","TestController@insert");
         Route::get("/total/{id}","CartController@gettotal"); 
