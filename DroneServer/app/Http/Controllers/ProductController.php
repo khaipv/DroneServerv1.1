@@ -127,6 +127,25 @@ class ProductController extends BaseController
    
     }
   
+ /**
+     * Register 
+     * @bodyParam $id bigInt id sup
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pagesize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Products retrieved successfully." 
+     * }
+     * @response 404 
+     * {
+     *  "message": "Product get error."
+     * } 
+     */
+
+
+
+
    /**
      * Add new product 
      * @bodyParam $request Request information of product add(ten_danh_muc,danh_muc_id,nha_cung_cap_id,don_gia,don_vi_ban,don_vi_ton_kho)
@@ -559,6 +578,220 @@ class ProductController extends BaseController
     else
     {
         return response()->json(['message'=>'Princes-products get error.']);
+    }
+   
+}
+
+
+
+    /**
+     * Get product with point 
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Products retrieved successfully."
+     * }
+     * @response {
+     * 
+     * "message":"Product get error."
+     * 
+     * }
+     */
+    public function indexpoint($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $products = Product::paginate($limit);
+     $product1 = $products->getCollection();
+     $count = count( $product1);
+     $product1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['danh_muc_id','nha_cung_cap_id','ten_san_pham','don_gia','mo_ta_chung','diem_danh_gia_tb']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$product1;
+     if($result['data']==!null)
+     {
+       
+        return $this->sendResponse($result, 'Products retrieved successfully.');
+     }
+    else
+    {
+        return response()->json(['message'=>'Product get error.']);
+    }
+   
+    }
+
+
+     /**
+     * Get product with point increa
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Products retrieved successfully."
+     * }
+     * @response {
+     * 
+     * "message":"Product get error."
+     * 
+     * }
+     */
+    public function indexpointsort($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $products = Product::orderBy('diem_danh_gia_tb')->paginate($limit);
+     $product1 = $products->getCollection();
+     $count = count( $product1);
+     $product1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['danh_muc_id','nha_cung_cap_id','ten_san_pham','don_gia','mo_ta_chung','diem_danh_gia_tb']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$product1;
+     if($result['data']==!null)
+     {
+       
+        return $this->sendResponse($result, 'Products retrieved successfully.');
+     }
+    else
+    {
+        return response()->json(['message'=>'Product get error.']);
+    }
+   
+    }
+
+    /**
+     * Get product with point deincrea
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Products retrieved successfully."
+     * }
+     * @response {
+     * 
+     * "message":"Product get error."
+     * 
+     * }
+     */
+    public function indexpointsortde($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $products = Product::orderBy('diem_danh_gia_tb','DESC')->paginate($limit);
+     $product1 = $products->getCollection();
+     $count = count( $product1);
+     $product1->each(function ($item) {
+        $item->setHidden(['id'])->setVisible(['danh_muc_id','nha_cung_cap_id','ten_san_pham','don_gia','mo_ta_chung','diem_danh_gia_tb']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$product1;
+     if($result['data']==!null)
+     {
+       
+        return $this->sendResponse($result, 'Products retrieved successfully.');
+     }
+    else
+    {
+        return response()->json(['message'=>'Product get error.']);
+    }
+   
+    }
+
+/**
+     * Get product with point deincrea hindden some infomation deincrea
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Products retrieved successfully."
+     * }
+     * @response {
+     * 
+     * "message":"Product get error."
+     * 
+     * }
+     */
+    public function indexpointsortde1($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $products = Product::orderBy('diem_danh_gia_tb','DESC')->paginate($limit);
+     $product1 = $products->getCollection();
+     $count = count( $product1);
+     $product1->each(function ($item) {
+        $item->setHidden(['id','danh_muc_id'])->setVisible(['nha_cung_cap_id','ten_san_pham','don_gia','mo_ta_chung','diem_danh_gia_tb']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$product1;
+     if($result['data']==!null)
+     {
+       
+        return $this->sendResponse($result, 'Products retrieved successfully.');
+     }
+    else
+    {
+        return response()->json(['message'=>'Product get error.']);
+    }
+   
+    }
+
+
+    /**
+     * Get product with point deincrea hindden some infomation deincrea
+     * @bodyParam $page int page in
+     * @bodyParam $limit int pageSize
+     * @response {
+     * "sucess":true
+     * "data" : "..."
+     * "message":"Products retrieved successfully."
+     * }
+     * @response {
+     * 
+     * "message":"Product get error."
+     * 
+     * }
+     */
+    public function indexpointsortde2($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $products = Product::orderBy('diem_danh_gia_tb')->paginate($limit);
+     $product1 = $products->getCollection();
+     $count = count( $product1);
+     $product1->each(function ($item) {
+        $item->setHidden(['id','danh_muc_id'])->setVisible(['nha_cung_cap_id','ten_san_pham','don_gia','mo_ta_chung','diem_danh_gia_tb']);
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
+     $result['data']=$product1;
+     if($result['data']==!null)
+     {
+       
+        return $this->sendResponse($result, 'Products retrieved successfully.');
+     }
+    else
+    {
+        return response()->json(['message'=>'Product get error.']);
     }
    
     }

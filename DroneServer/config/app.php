@@ -163,6 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
         Spatie\JsonApiPaginate\JsonApiPaginateServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
         /*
          * Package Service Providers...
          */

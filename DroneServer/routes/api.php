@@ -35,6 +35,10 @@ Route::get("/productnamesort/page={page}&limit={size}","ProductController@indexn
 Route::get("/productpricessort/page={page}&limit={size}","ProductController@indexpricessortincre");
 Route::get("/productpricessortde/page={page}&limit={size}","ProductController@indexpricessortdeincre");
 Route::get("/product/sup={id}&page={page}&limit={size}","ProductController@indexsup");
+Route::get("/productin/page={page}&limit={size}","ProductController@indexpointsort");
+Route::get("/productde/page={page}&limit={size}","ProductController@indexpointsortde");
+Route::get("/productpoint1/page={page}&limit={size}","ProductController@indexpointsortde1");
+Route::get("/productpoint2/page={page}&limit={size}","ProductController@indexpointsortde2");
 Route::get("/store/page={page}&limit={size}","StoreController@indexid");
 Route::get("/catagoryid/page={page}&limit={size}","CatagoryController@indexid");   
 Route::get("/prices/{id}","ProductController@price");  
@@ -45,7 +49,6 @@ Route::post('login', 'AuthController@login');
 
 Route::group(['middleware' => ['auth:api', 'admin']], function() {
        
-        Route::get('user', 'AuthController@user');
         Route::get('user&role={id}&page={page}&limit={size}', 'UserController@indexrole');
         Route::get('logout', 'AuthController@logout');
         Route::post("/product","ProductController@insert");
@@ -66,6 +69,7 @@ Route::group(['middleware' => ['auth:api', 'admin']], function() {
 
 
 Route::group(['middleware' => ['auth:api','employee']], function() {    
+
         Route::get("/catagory/page={page}&limit={size}","CatagoryController@index"); 
         Route::get("/order/user={id}&page={page}&limit={size}","OrderController@indexuser");
         Route::get("/order/date={date}&page={page}&limit={size}","OrderController@indexdateorder");
