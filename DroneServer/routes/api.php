@@ -26,7 +26,8 @@ use GuzzleHttp\Middleware;
 
 // });
 //product
-Route::get("/product/page={page}&limit={size}","ProductController@index");
+Route::get("/product/page={page}&limit={size}","ProductController@index")->middleware('cors');
+//Route::get('/product/page={page}&limit={size}',['middleware' =>'cors'], 'ProductController@index');
 Route::get("/product={id}","ProductController@show");
 Route::get("/product/cata={id}&page={page}&limit={size}","ProductController@indexcata");
 Route::get("/productname/page={page}&limit={size}","ProductController@indexname");
