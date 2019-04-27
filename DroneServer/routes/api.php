@@ -27,28 +27,27 @@ use GuzzleHttp\Middleware;
 // });
 //product
 Route::get("/product/page={page}&limit={size}","ProductController@index")->middleware('cors');
-//Route::get('/product/page={page}&limit={size}',['middleware' =>'cors'], 'ProductController@index');
-Route::get("/product={id}","ProductController@show");
-Route::get("/product/cata={id}&page={page}&limit={size}","ProductController@indexcata");
-Route::get("/productname/page={page}&limit={size}","ProductController@indexname");
-Route::get("/productid/page={page}&limit={size}","ProductController@indexid");
-Route::get("/productnamesort/page={page}&limit={size}","ProductController@indexnamesort");
-Route::get("/productpricessort/page={page}&limit={size}","ProductController@indexpricessortincre");
-Route::get("/productpricessortde/page={page}&limit={size}","ProductController@indexpricessortdeincre");
-Route::get("/product/sup={id}&page={page}&limit={size}","ProductController@indexsup");
-Route::get("/productin/page={page}&limit={size}","ProductController@indexpointsort");
-Route::get("/productde/page={page}&limit={size}","ProductController@indexpointsortde");
-Route::get("/productpoint1/page={page}&limit={size}","ProductController@indexpointsortde1");
-Route::get("/productpoint2/page={page}&limit={size}","ProductController@indexpointsortde2");
-Route::get("/store/page={page}&limit={size}","StoreController@indexid");
-Route::get("/catagoryid/page={page}&limit={size}","CatagoryController@indexid");   
-Route::get("/prices/{id}","ProductController@price");  
-Route::post('register', 'AuthController@register');
-Route::post('login', 'AuthController@login');
+Route::get("/product={id}","ProductController@show")->middleware('cors');;
+Route::get("/product/cata={id}&page={page}&limit={size}","ProductController@indexcata")->middleware('cors');;
+Route::get("/productname/page={page}&limit={size}","ProductController@indexname")->middleware('cors');;
+Route::get("/productid/page={page}&limit={size}","ProductController@indexid")->middleware('cors');;
+Route::get("/productnamesort/page={page}&limit={size}","ProductController@indexnamesort")->middleware('cors');;
+Route::get("/productpricessort/page={page}&limit={size}","ProductController@indexpricessortincre")->middleware('cors');;
+Route::get("/productpricessortde/page={page}&limit={size}","ProductController@indexpricessortdeincre")->middleware('cors');;
+Route::get("/product/sup={id}&page={page}&limit={size}","ProductController@indexsup")->middleware('cors');;
+Route::get("/productin/page={page}&limit={size}","ProductController@indexpointsort")->middleware('cors');;
+Route::get("/productde/page={page}&limit={size}","ProductController@indexpointsortde")->middleware('cors');;
+Route::get("/productpoint1/page={page}&limit={size}","ProductController@indexpointsortde1")->middleware('cors');;
+Route::get("/productpoint2/page={page}&limit={size}","ProductController@indexpointsortde2")->middleware('cors');;
+Route::get("/store/page={page}&limit={size}","StoreController@indexid")->middleware('cors');;
+Route::get("/catagoryid/page={page}&limit={size}","CatagoryController@indexid")->middleware('cors');;   
+Route::get("/prices/{id}","ProductController@price")->middleware('cors');;  
+Route::post('register', 'AuthController@register')->middleware('cors');;
+Route::post('login', 'AuthController@login')->middleware('cors');;
 
   
 
-Route::group(['middleware' => ['auth:api', 'admin']], function() {
+Route::group(['middleware' => ['auth:api', 'admin','cors']], function() {
        
         Route::get('user&role={id}&page={page}&limit={size}', 'UserController@indexrole');
         Route::get('logout', 'AuthController@logout');
@@ -69,7 +68,7 @@ Route::group(['middleware' => ['auth:api', 'admin']], function() {
          });
 
 
-Route::group(['middleware' => ['auth:api','employee']], function() {    
+Route::group(['middleware' => ['auth:api','employee','cors']], function() {    
 
         Route::get("/catagory/page={page}&limit={size}","CatagoryController@index"); 
         Route::get("/order/user={id}&page={page}&limit={size}","OrderController@indexuser");
@@ -110,12 +109,12 @@ Route::group(['middleware' => ['auth:api','employee']], function() {
         Route::get("/storef/page={page}&limit={size}","StoreController@index");
         Route::get("/cartf/page={page}&limit={size}","CartController@index");
                      });
-
+                  //   Route::get("/cart/page={page}&limit={size}","CartController@indexid");
 Route::group(['middleware' => ['auth:api','customer']], function() {
         Route::get("/order/user={id}&page={page}&limit={size}","OrderController@indexuser");
         Route::get('user', 'AuthController@user');
         Route::get('logout', 'AuthController@logout');
-        Route::get("/cart/page={page}&limit={size}","CartController@indexid");
+       Route::get("/cart/page={page}&limit={size}","CartController@indexid");
         Route::post("/cart","CartController@insert");
         Route::post("/cartdetail","CartController@insertdetail");
         Route::post("/cartdetail","CartController@insertdetail");

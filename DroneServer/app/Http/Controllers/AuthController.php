@@ -81,7 +81,9 @@ $validator = Validator::make($input, [
 ]);
 
 if($validator->fails()){
-    return $this->sendError('Validation Error.', $validator->errors());       
+  //  return $this->sendError('Validation Error.', $validator->errors());   
+    return response()->json([
+        'message' => 'Error created user!']);    
 }
 
 
