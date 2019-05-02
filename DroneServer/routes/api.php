@@ -48,7 +48,6 @@ Route::post('login', 'AuthController@login')->middleware('cors');;
   
 
 Route::group(['middleware' => ['auth:api', 'admin','cors']], function() {
-       
         Route::get('user&role={id}&page={page}&limit={size}', 'UserController@indexrole');
         Route::get('logout', 'AuthController@logout');
         Route::post("/product","ProductController@insert");
@@ -69,7 +68,6 @@ Route::group(['middleware' => ['auth:api', 'admin','cors']], function() {
 
 
 Route::group(['middleware' => ['auth:api','employee','cors']], function() {    
-
         Route::get("/catagory/page={page}&limit={size}","CatagoryController@index"); 
         Route::get("/order/user={id}&page={page}&limit={size}","OrderController@indexuser");
         Route::get("/order/date={date}&page={page}&limit={size}","OrderController@indexdateorder");
@@ -89,8 +87,7 @@ Route::group(['middleware' => ['auth:api','employee','cors']], function() {
         Route::post("/catagory","CatagoryController@insert");
         Route::put('/catagory/{id}',"CatagoryController@update");
         Route::delete('/catagory/{id}', "CatagoryController@delete");
-        Route::delete("/order/{id}","OrderController@delete");
-       
+        Route::delete("/order/{id}","OrderController@delete");   
         Route::post("/test","TestController@insert");
         Route::get("/roleid/page={page}&limit={size}","RoleController@indexid");
         Route::get("/orderdetail/{id}/page={page}&limit={size}","OrderController@getdetailorder");
@@ -109,32 +106,38 @@ Route::group(['middleware' => ['auth:api','employee','cors']], function() {
         Route::get("/storef/page={page}&limit={size}","StoreController@index");
         Route::get("/cartf/page={page}&limit={size}","CartController@index");
                      });
-Route::group(['middleware' => ['auth:api','customer','cors']], function() {
-        Route::get("/order/user={id}&page={page}&limit={size}","OrderController@indexuser");
-        Route::get('user', 'AuthController@user');
-        Route::get('logout', 'AuthController@logout');
-       Route::get("/cart/page={page}&limit={size}","CartController@indexid");
-        Route::post("/cart","CartController@insert");
-        Route::post("/cartdetail","CartController@insertdetail");
-        Route::post("/cartdetail","CartController@insertdetail");
-        Route::put('/cart/{id}',"CartController@update");
-        Route::put('/cartdetail/{id}',"CartController@updatedetail");
-        Route::delete('/cart/{id}', "CartController@delete");
-        Route::delete('/cartdetail/{id}', "CartController@deletedetail");
-        Route::get("/cartdetail/{id}/page={page}&limit={size}","CartController@getdetailcart");
-        Route::get("/cartdetailid/{id}/page={page}&limit={size}","CartController@getdetailcartid");  
-        Route::get("/cartdetailid1/{id}/page={page}&limit={size}","CartController@getdetailcartid1"); 
-        Route::get("/productban/page={page}&limit={size}","ProductController@indexban");
-        Route::get("/productton/page={page}&limit={size}","ProductController@indexton");   
-        Route::post("/user","UserController@insert");
-        Route::put('/user/{id}',"UserController@update");
-        Route::delete('/user/{id}', "UserController@delete");
-        Route::post("/order","OrderController@insert");
-        Route::post("/orderdetail","OrderController@insertdetail");
-        Route::put("/order/{id}","OrderController@update");
-        Route::put("/orderdetail/{id}","OrderController@updatedetail");
-        Route::delete("/orderdetail/{id}","OrderController@deletedetail");
-        Route::get("/orderdetail/{id}/page={page}&limit={size}","OrderController@getdetailorder");
-        Route::post("/test","TestController@insert");
-        Route::get("/total/{id}","CartController@gettotal"); 
-                           });
+
+
+                     Route::group(['middleware' => ['auth:api','customer','cors']], function() {
+                        Route::get("/order/user={id}&page={page}&limit={size}","OrderController@indexuser");    
+                        Route::get("/cart/page={page}&limit={size}","CartController@indexid");
+                        Route::post("/cart","CartController@insert");
+                        Route::post("/cartdetail","CartController@insertdetail");
+                        Route::post("/cartdetail","CartController@insertdetail");
+                        Route::put('/cart/{id}',"CartController@update");
+                        Route::put('/cartdetail/{id}',"CartController@updatedetail");
+                        Route::delete('/cart/{id}', "CartController@delete");
+                        Route::delete('/cartdetail/{id}', "CartController@deletedetail");
+                        Route::get("/cartdetail/{id}/page={page}&limit={size}","CartController@getdetailcart");
+                        Route::get("/cartdetailid/{id}/page={page}&limit={size}","CartController@getdetailcartid");  
+                        Route::get("/cartdetailid1/{id}/page={page}&limit={size}","CartController@getdetailcartid1"); 
+                        Route::get("/productban/page={page}&limit={size}","ProductController@indexban");
+                        Route::get("/productton/page={page}&limit={size}","ProductController@indexton");   
+                        Route::post("/user","UserController@insert");
+                        Route::put('/user/{id}',"UserController@update");
+                        Route::delete('/user/{id}', "UserController@delete");
+                        Route::post("/order","OrderController@insert");
+                        Route::post("/orderdetail","OrderController@insertdetail");
+                        Route::put("/order/{id}","OrderController@update");
+                        Route::put("/orderdetail/{id}","OrderController@updatedetail");
+                        Route::delete("/orderdetail/{id}","OrderController@deletedetail");
+                        Route::get("/orderdetail/{id}/page={page}&limit={size}","OrderController@getdetailorder");
+                        Route::post("/test","TestController@insert");
+                        Route::get("/total/{id}","CartController@gettotal"); 
+                                           });
+
+
+                                           Route::group(['middleware' => ['auth:api','employee'||'customer'||'admin','cors']], function() {    
+                                                Route::get('user', 'AuthController@user');
+                                                Route::get('logout', 'AuthController@logout');
+                                                             });
