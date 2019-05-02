@@ -109,8 +109,7 @@ Route::group(['middleware' => ['auth:api','employee','cors']], function() {
         Route::get("/storef/page={page}&limit={size}","StoreController@index");
         Route::get("/cartf/page={page}&limit={size}","CartController@index");
                      });
-                  //   Route::get("/cart/page={page}&limit={size}","CartController@indexid");
-Route::group(['middleware' => ['auth:api','customer']], function() {
+Route::group(['middleware' => ['auth:api','customer','cors']], function() {
         Route::get("/order/user={id}&page={page}&limit={size}","OrderController@indexuser");
         Route::get('user', 'AuthController@user');
         Route::get('logout', 'AuthController@logout');

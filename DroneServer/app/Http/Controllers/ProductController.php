@@ -32,7 +32,8 @@ class ProductController extends BaseController
      $products = Product::paginate($limit);
      $product = $products->toArray();
      $result['total'] = $products->total();
-     $result['page'] = $products->currentPage();
+   //  $result['page'] = $products->currentPage();
+     $result['page'] = $page;
      $result['pageSize'] = $products->perPage();
      $result['data']=$product['data'];
      if($result['data']==!null)
