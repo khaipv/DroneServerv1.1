@@ -94,8 +94,8 @@ class UserController extends BaseController
         $item->setHidden(['id'])->setVisible(['ho_ten','email','password','so_dien_thoai','dia_chi','vai_tro_id']);
     }); 
      $result['total'] = $count;
-     $result['page'] = $page->currentPage();
-     $result['pageSize'] = $limit->perPage();
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
      $result['data']=$user1;
      if($result['data']==!null)
      {
@@ -146,8 +146,8 @@ class UserController extends BaseController
         $item->setHidden(['id','password'])->setVisible(['ho_ten','email','so_dien_thoai','dia_chi','vai_tro_id']);
     }); 
      $result['total'] = $count;
-     $result['page'] = $page->currentPage();
-     $result['pageSize'] = $limit->perPage();
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
      $result['data']=$user1;
      if($result['data']==!null)
      {
@@ -196,8 +196,8 @@ class UserController extends BaseController
         $item->setHidden(['id','password','email'])->setVisible(['ho_ten','so_dien_thoai','dia_chi','vai_tro_id']);
     }); 
      $result['total'] = $count;
-     $result['page'] = $page->currentPage();
-     $result['pageSize'] = $limit->perPage();
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
      $result['data']=$user1;
      if($result['data']==!null)
      {
@@ -246,8 +246,8 @@ class UserController extends BaseController
         $item->setHidden(['id','password','email','vai_tro_id'])->setVisible(['ho_ten','so_dien_thoai','dia_chi']);
     }); 
      $result['total'] = $count;
-     $result['page'] = $page->currentPage();
-     $result['pageSize'] = $limit->perPage();
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
      $result['data']=$user1;
      if($result['data']==!null)
      {
@@ -296,8 +296,8 @@ class UserController extends BaseController
         $item->setHidden(['id','password','email','vai_tro_id','so_dien_thoai','dia_chi'])->setVisible(['ho_ten']);
     }); 
      $result['total'] = $count;
-     $result['page'] = $page->currentPage();
-     $result['pageSize'] = $limit->perPage();
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
      $result['data']=$user1;
      if($result['data']==!null)
      {
@@ -498,8 +498,8 @@ class UserController extends BaseController
        }
     }); 
      $result['total'] = $count;
-     $result['page'] = $page->currentPage();
-     $result['pageSize'] = $limit->perPage();
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
      $result['data']=$user1;
      if($result['data']==!null)
      {
@@ -526,8 +526,8 @@ class UserController extends BaseController
        }
     }); 
      $result['total'] = $count;
-     $result['page'] = $page->currentPage();
-     $result['pageSize'] = $limit->perPage();
+     $result['page'] = $page;
+     $result['pageSize'] = $limit;
      $result['data']=$user1;
      if($result['data']==!null)
      {

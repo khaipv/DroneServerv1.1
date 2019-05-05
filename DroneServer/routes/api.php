@@ -47,7 +47,6 @@ Route::post('login', 'AuthController@login')->middleware('cors');;
 
 
 
-
 Route::group(['middleware' => ['auth:api', 'admin','cors']], function() {
         Route::get('user&role={id}&page={page}&limit={size}', 'UserController@indexrole');
         Route::get('logout', 'AuthController@logout');
@@ -64,15 +63,16 @@ Route::group(['middleware' => ['auth:api', 'admin','cors']], function() {
         Route::post("/catagory","CatagoryController@insert");
         Route::put('/catagory/{id}',"CatagoryController@update");
         Route::delete('/catagory/{id}', "CatagoryController@delete");
-        Route::get('users/page={page}&limit={size}', 'UserController@index');
         Route::get('users/id={id}', 'UserController@getiduser');
+        Route::get('users/page={page}&limit={size}', 'UserController@index');
+      
          });
 
 
 Route::group(['middleware' => ['auth:api','employee','cors']], function() {   
         Route::get('userscus/id={id}', 'UserController@getidkh');
 
-        Route::get('userscus/page={page}&limit={size}', 'UserController@getidkh');
+        Route::get('userscus/page={page}&limit={size}', 'UserController@indexwithoutpassncc');
        
         Route::get("/catagory/page={page}&limit={size}","CatagoryController@index"); 
         Route::get("/order/user={id}&page={page}&limit={size}","OrderController@indexuser");
@@ -113,11 +113,12 @@ Route::group(['middleware' => ['auth:api','employee','cors']], function() {
         Route::get("/cartf/page={page}&limit={size}","CartController@index");
                      });
 
+                 
 
                      Route::group(['middleware' => ['auth:api','customer','cors']], function() {
                         Route::get('userssup/id={id}', 'UserController@getidncc'); 
-                        Route::get('userssup/page={page}&limit={size}', 'UserController@getidncc');
-                    
+                       
+                        Route::get('userssup/page={page}&limit={size}', 'UserController@indexwithoutpasskh');
                         Route::get("/order/user={id}&page={page}&limit={size}","OrderController@indexuser");    
                         Route::get("/cart/page={page}&limit={size}","CartController@indexid");
                         Route::post("/cart","CartController@insert");
