@@ -70,8 +70,10 @@ Route::group(['middleware' => ['auth:api', 'admin','cors']], function() {
 
 
 Route::group(['middleware' => ['auth:api','employee','cors']], function() {   
-        Route::get('userssup/id={id}', 'UserController@getidncc'); 
-        Route::get('userssup/page={page}&limit={size}', 'UserController@getidncc');
+        Route::get('userscus/id={id}', 'UserController@getidkh');
+
+        Route::get('userscus/page={page}&limit={size}', 'UserController@getidkh');
+       
         Route::get("/catagory/page={page}&limit={size}","CatagoryController@index"); 
         Route::get("/order/user={id}&page={page}&limit={size}","OrderController@indexuser");
         Route::get("/order/date={date}&page={page}&limit={size}","OrderController@indexdateorder");
@@ -113,10 +115,9 @@ Route::group(['middleware' => ['auth:api','employee','cors']], function() {
 
 
                      Route::group(['middleware' => ['auth:api','customer','cors']], function() {
-
-                        Route::get('userscus/id={id}', 'UserController@getidkh');
-
-                        Route::get('userscus/page={page}&limit={size}', 'UserController@getidkh');
+                        Route::get('userssup/id={id}', 'UserController@getidncc'); 
+                        Route::get('userssup/page={page}&limit={size}', 'UserController@getidncc');
+                    
                         Route::get("/order/user={id}&page={page}&limit={size}","OrderController@indexuser");    
                         Route::get("/cart/page={page}&limit={size}","CartController@indexid");
                         Route::post("/cart","CartController@insert");
