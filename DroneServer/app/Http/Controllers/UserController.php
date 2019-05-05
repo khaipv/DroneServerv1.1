@@ -25,6 +25,16 @@ class UserController extends BaseController
      * "message":"Users get error."
      * 
      * } 
+     * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }  
      */
    public function index($page,$limit)
     {      
@@ -61,6 +71,16 @@ class UserController extends BaseController
      * "message":"Users get error."
      * 
      * } 
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
     public function indexwithoutid($page,$limit)
     {      
@@ -102,7 +122,17 @@ class UserController extends BaseController
      * 
      * "message":"Users get error."
      * 
+     * }
+     * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
      * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
     public function indexwithoutpass($page,$limit)
     {      
@@ -142,7 +172,17 @@ class UserController extends BaseController
      * 
      * "message":"Users get error."
      * 
+     * }
+     * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
      * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
     public function indexwithoutemail($page,$limit)
     {      
@@ -182,7 +222,17 @@ class UserController extends BaseController
      * 
      * "message":"Users get error."
      * 
+     * }
+     * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
      * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
     public function indexwithout2($page,$limit)
     {      
@@ -222,7 +272,17 @@ class UserController extends BaseController
      * 
      * "message":"Users get error."
      * 
+     * }
+     * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
      * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
     public function indexwithout3($page,$limit)
     {      
@@ -263,7 +323,17 @@ class UserController extends BaseController
      * 
      * "message":"Users get error."
      * 
-     * }  
+     * } 
+     * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }     
      */
     public function indexrole($id,$page,$limit)
     {      
@@ -347,10 +417,135 @@ class UserController extends BaseController
          return response()->json(['message'=>'User deleted error.']);
        }  
       
-    }  
+    } 
     
+    
+    /**
+     * Finded user 
+     * @bodyParam $id bigInt of user update 
+     */
+    
+    public function getiduser($id)
+    {
+       $user = new User();
+       $user = User::findOrFail($id);
+      
+       if($user!==null)
+       {
+         return response()->json(['userdetail'=>$user]);
+       }
+      else
+       {
+         return response()->json(['message'=>'User finded error.']);
+       }  
+      
+    } 
+    
+/**
+     * Finded user 
+     * @bodyParam $id bigInt of user update 
+     */
+    
+    public function getidncc($id)
+    {
+       $user = new User();
+       $user = User::findOrFail($id);
+      
+       if(($user!==null)&&($user->vai_tro_id==1))
+       {
+         return response()->json(['userdetail'=>$user]);
+       }
+      else
+       {
+         return response()->json(['message'=>'User finded error.']);
+       }  
+      
+    } 
+
+    /**
+     * Finded user 
+     * @bodyParam $id bigInt of user update 
+     */
+    
+    public function getidkh($id)
+    {
+       $user = new User();
+       $user = User::findOrFail($id);
+      
+       if(($user!==null)&&($user->vai_tro_id==3))
+       {
+         return response()->json(['userdetail'=>$user]);
+       }
+      else
+       {
+         return response()->json(['message'=>'User finded error.']);
+       }  
+      
+    } 
+
+    public function indexwithoutpassncc($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $users = User::paginate($limit);
+     $user1 = $users->getCollection();
+     $count = count( $user1);
+     $user1->each(function ($item) {
+       if($item->vai_tro_id==1)
+       {
+        $item->setHidden(['id','password'])->setVisible(['ho_ten','email','so_dien_thoai','dia_chi','vai_tro_id']);
+       }
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page->currentPage();
+     $result['pageSize'] = $limit->perPage();
+     $result['data']=$user1;
+     if($result['data']==!null)
+     {
+      return $this->sendResponse($result, 'Users retrieved successfully.'); 
+     }
+     else
+     {
+      return response()->json(['message'=>'User get error.']);
+     }
+    }
+
+    public function indexwithoutpasskh($page,$limit)
+    {      
+        Paginator::currentPageResolver(function() use ($page) {
+            return $page;
+        });
+     $users = User::paginate($limit);
+     $user1 = $users->getCollection();
+     $count = count( $user1);
+     $user1->each(function ($item) {
+       if($item->vai_tro_id==3)
+       {
+        $item->setHidden(['id','password'])->setVisible(['ho_ten','email','so_dien_thoai','dia_chi','vai_tro_id']);
+       }
+    }); 
+     $result['total'] = $count;
+     $result['page'] = $page->currentPage();
+     $result['pageSize'] = $limit->perPage();
+     $result['data']=$user1;
+     if($result['data']==!null)
+     {
+      return $this->sendResponse($result, 'Users retrieved successfully.'); 
+     }
+     else
+     {
+      return response()->json(['message'=>'User get error.']);
+     }
+    }
+
+
+
+
     public function isAdmin()
 {
     return $this->type == 0;
 } 
 }
+
+  

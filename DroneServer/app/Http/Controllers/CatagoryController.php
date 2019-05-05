@@ -22,6 +22,16 @@ class CatagoryController extends BaseController
      * {
      * "message":"Catagories get error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
       public function index($page,$limit)
@@ -61,6 +71,16 @@ class CatagoryController extends BaseController
      * {
      * "message":"Catagories get error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function indexid($page,$limit)
@@ -104,6 +124,16 @@ class CatagoryController extends BaseController
      * {
      *   "message":"Validation Error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function insert(Request $request)
@@ -140,7 +170,16 @@ class CatagoryController extends BaseController
      * {
      *   "message":"Catagory updated error."
      * }
+       * @response 401{
      * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
 
@@ -173,6 +212,16 @@ class CatagoryController extends BaseController
      * {
      *   "message":"Catagory deleted error."
      * } 
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
 

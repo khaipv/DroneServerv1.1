@@ -32,6 +32,16 @@ class CartController extends BaseController
      * @response 404 {
      *  "message": "Cart get error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
    public function index($page,$limit)
@@ -76,6 +86,16 @@ class CartController extends BaseController
      * @response 404 {
      *  "message": "Cart get error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function indexid($page,$limit)
@@ -122,6 +142,16 @@ class CartController extends BaseController
      * @response 404 {
      *  "message": "Validation Error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
     public function insert(Request $request)
     {         
@@ -153,6 +183,16 @@ class CartController extends BaseController
      * @response 404 {
      *  "message": "Cart updated error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function update(Request $request, $id)
@@ -180,6 +220,16 @@ class CartController extends BaseController
      * @response 404 {
      *  "message": "Cart-detail updated error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function updatedetail(Request $request, $id)
@@ -204,6 +254,16 @@ class CartController extends BaseController
      * @response 404 {
      *  "message": "Cart deleted error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
     public function delete($id)
     {
@@ -229,6 +289,16 @@ class CartController extends BaseController
      * @response 404 {
      *  "message": "Cart-detail deleted error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
     public function deletedetail($id)
     {
@@ -274,6 +344,16 @@ class CartController extends BaseController
      * @response 404 {
      *  "message": "CartCartDetail get error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function getdetailcart($id,$page,$limit)
@@ -327,6 +407,16 @@ class CartController extends BaseController
      * @response 404 {
      *  "message": "CartCartDetail get error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function getdetailcartid($id,$page,$limit)
@@ -369,6 +459,16 @@ class CartController extends BaseController
      * @response 404 {
      *  "message": "Validation Error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
     public function insertdetail(Request $request)
     {         
@@ -418,6 +518,16 @@ class CartController extends BaseController
      * @response 404 {
      *  "message": "CartCartDetail get error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function getdetailcartid1($id,$page,$limit)

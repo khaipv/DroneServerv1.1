@@ -94,7 +94,7 @@ if($validator->fails()){
       'password' => bcrypt($request['password']),
       'so_dien_thoai'=> $request['so_dien_thoai'],
       'dia_chi'=> $request['dia_chi'],
-      'vai_tro_id'=> '1',
+      'vai_tro_id'=> '3',
     ]);
    
        $result= $user->save();

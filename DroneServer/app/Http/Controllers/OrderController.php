@@ -23,6 +23,16 @@ class OrderController extends BaseController
      * {
      * "message":"Orders get error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
       public function index($page,$limit)
@@ -62,6 +72,16 @@ class OrderController extends BaseController
      * {
      * "message":"Orders get error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
 
@@ -102,6 +122,16 @@ class OrderController extends BaseController
      * {
      * "message":"Orders get error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function indexdateorder($date,$page,$limit)
@@ -141,6 +171,16 @@ class OrderController extends BaseController
      * {
      * "message":"Orders get error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function indexreci($date,$page,$limit)
@@ -180,6 +220,16 @@ class OrderController extends BaseController
      * {
      * "message":"Validation Error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
 
@@ -219,6 +269,16 @@ class OrderController extends BaseController
      * {
      * "message":"Validation Error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
 
@@ -259,6 +319,16 @@ class OrderController extends BaseController
      * {
      * "message":"Orders updated error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
 
@@ -289,6 +359,16 @@ class OrderController extends BaseController
      * {
      * "message":"Order-detail updated error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
 
@@ -318,6 +398,16 @@ class OrderController extends BaseController
      * {
      * "message":"Order deleted error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function delete($id)
@@ -347,6 +437,16 @@ class OrderController extends BaseController
      * {
      * "message":"Order-detail deleted error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function deletedetail($id)
@@ -378,6 +478,16 @@ class OrderController extends BaseController
      * {
      * "message":"OrderDetails get error."
      * } 
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
 
@@ -416,6 +526,16 @@ class OrderController extends BaseController
      * {
      * "message":"Orders get error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function indexwithouid($page,$limit)
@@ -458,6 +578,16 @@ class OrderController extends BaseController
      * {
      * "message":"Orders get error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function indexsortbydatere($page,$limit)
@@ -500,6 +630,16 @@ class OrderController extends BaseController
      * {
      * "message":"Orders get error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function indexsortbydatere1($page,$limit)
@@ -543,6 +683,16 @@ class OrderController extends BaseController
      * {
      * "message":"Orders get error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function indexsortbydateor($page,$limit)
@@ -585,6 +735,16 @@ class OrderController extends BaseController
      * {
      * "message":"Orders get error."
      * }
+       * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function indexsortbydateor1($page,$limit)

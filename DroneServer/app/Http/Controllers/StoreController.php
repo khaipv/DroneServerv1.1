@@ -23,7 +23,17 @@ class StoreController extends BaseController
      * 
      * "message":"Stores get error."
      * 
+     * }
+     * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
      * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function index($page,$limit)
@@ -65,7 +75,17 @@ class StoreController extends BaseController
      * 
      * "message":"Stores get error."
      * 
+     * }
+     * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
      * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }    
      */
 
     public function indexid($page,$limit)
@@ -109,6 +129,16 @@ class StoreController extends BaseController
      * "message":"Validation Error."
      * 
      * } 
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }     
      */
 
     public function insert(Request $request)
@@ -144,6 +174,16 @@ class StoreController extends BaseController
    * @response 404{
    * "message":"Stores updated error." 
    * } 
+    * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
    */
 
     public function update(Request $request, $id)
@@ -171,6 +211,16 @@ class StoreController extends BaseController
      * @response 404{
      * "message":"Store deleted error." 
      * } 
+     * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+     * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
     public function delete($id)
     {

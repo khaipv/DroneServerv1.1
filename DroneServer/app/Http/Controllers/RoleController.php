@@ -23,6 +23,16 @@ class RoleController extends BaseController
      * {
      * "message":"Roles get error."
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
     public function index($page,$limit)
     {      
@@ -62,6 +72,16 @@ class RoleController extends BaseController
      * {
      * "message":"Roles get error."
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
     public function indexid($page,$limit)
     {      
@@ -107,6 +127,16 @@ class RoleController extends BaseController
      * {
      * "message":"Validation Error."
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
     public function insert(Request $request)
     {         
@@ -139,6 +169,16 @@ class RoleController extends BaseController
      * {
      * "message":"Roles updated error."
      * } 
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
 
     public function update(Request $request, $id)
@@ -168,6 +208,16 @@ class RoleController extends BaseController
      * {
      * "message":"Role deleted error."
      * }  
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
 
     public function delete($id)

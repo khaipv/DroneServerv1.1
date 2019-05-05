@@ -23,6 +23,16 @@ class ProductController extends BaseController
      * "message":"Product get error."
      * 
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
     public function index($page,$limit)
     {      
@@ -63,6 +73,16 @@ class ProductController extends BaseController
      * {
      *  "message": "Product get error."
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
 
     public function indexcata($id,$page,$limit)
@@ -103,6 +123,16 @@ class ProductController extends BaseController
      * {
      *  "message": "Product get error."
      * } 
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
 
     public function indexsup($id,$page,$limit)
@@ -142,6 +172,16 @@ class ProductController extends BaseController
      * {
      *  "message": "Product get error."
      * } 
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
 
 
@@ -156,6 +196,16 @@ class ProductController extends BaseController
      * @response 404{
      * "message":"Validation Error." 
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
 
    public function insert(Request $request)
@@ -197,6 +247,16 @@ class ProductController extends BaseController
      * {
      * "message": "Product updated error."
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
 
     public function update(Request $request, $id)
@@ -228,6 +288,16 @@ class ProductController extends BaseController
      * {
      * "message":"Product not found."
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
     public function show($id)
     {
@@ -252,6 +322,16 @@ class ProductController extends BaseController
      * {
      * "message":"Product deleted error."
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
 
     public function delete($id)
@@ -301,6 +381,16 @@ class ProductController extends BaseController
      * "message":"Product get error."
      * 
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */   
      public function indexname($page,$limit)
     {      
@@ -343,6 +433,16 @@ class ProductController extends BaseController
      * "message":"Product get error."
      * 
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */   
     public function indexban($page,$limit)
     {      
@@ -385,6 +485,16 @@ class ProductController extends BaseController
      * "message":"Product get error."
      * 
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */   
     public function indexton($page,$limit)
     {      
@@ -429,6 +539,16 @@ class ProductController extends BaseController
      * "message":"Id products get error."
      * 
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */   
     public function indexid($page,$limit)
     {      
@@ -471,6 +591,16 @@ class ProductController extends BaseController
      * "message":"Name-products get error."
      * 
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */   
     public function indexnamesort($page,$limit)
     {      
@@ -513,6 +643,16 @@ class ProductController extends BaseController
      * "message":"Prices-products get error."
      * 
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */   
     public function indexpricessortincre($page,$limit)
     {      
@@ -555,6 +695,16 @@ class ProductController extends BaseController
      * "message":"Prices-products get error."
      * 
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */   
     public function indexpricessortdeincre($page,$limit)
     {      
@@ -599,6 +749,16 @@ class ProductController extends BaseController
      * "message":"Product get error."
      * 
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
     public function indexpoint($page,$limit)
     {      
@@ -642,6 +802,16 @@ class ProductController extends BaseController
      * "message":"Product get error."
      * 
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
     public function indexpointsort($page,$limit)
     {      
@@ -684,6 +854,16 @@ class ProductController extends BaseController
      * "message":"Product get error."
      * 
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
     public function indexpointsortde($page,$limit)
     {      
@@ -726,6 +906,16 @@ class ProductController extends BaseController
      * "message":"Product get error."
      * 
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
     public function indexpointsortde1($page,$limit)
     {      
@@ -769,6 +959,16 @@ class ProductController extends BaseController
      * "message":"Product get error."
      * 
      * }
+      * @response 401{
+     * 
+     * "message":"Unauthorized."
+     * 
+     * } 
+      * @response 403{
+     * 
+     * "message":"Forbidden."
+     * 
+     * }   
      */
     public function indexpointsortde2($page,$limit)
     {      

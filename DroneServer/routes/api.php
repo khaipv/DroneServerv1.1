@@ -45,7 +45,8 @@ Route::get("/prices/{id}","ProductController@price")->middleware('cors');;
 Route::post('register', 'AuthController@register')->middleware('cors');;
 Route::post('login', 'AuthController@login')->middleware('cors');;
 
-  
+
+
 
 Route::group(['middleware' => ['auth:api', 'admin','cors']], function() {
         Route::get('user&role={id}&page={page}&limit={size}', 'UserController@indexrole');
@@ -64,10 +65,13 @@ Route::group(['middleware' => ['auth:api', 'admin','cors']], function() {
         Route::put('/catagory/{id}',"CatagoryController@update");
         Route::delete('/catagory/{id}', "CatagoryController@delete");
         Route::get('users/page={page}&limit={size}', 'UserController@index');
+        Route::get('users/id={id}', 'UserController@getiduser');
          });
 
 
-Route::group(['middleware' => ['auth:api','employee','cors']], function() {    
+Route::group(['middleware' => ['auth:api','employee','cors']], function() {   
+        Route::get('userssup/id={id}', 'UserController@getidncc'); 
+        Route::get('userssup/page={page}&limit={size}', 'UserController@getidncc');
         Route::get("/catagory/page={page}&limit={size}","CatagoryController@index"); 
         Route::get("/order/user={id}&page={page}&limit={size}","OrderController@indexuser");
         Route::get("/order/date={date}&page={page}&limit={size}","OrderController@indexdateorder");
@@ -109,6 +113,10 @@ Route::group(['middleware' => ['auth:api','employee','cors']], function() {
 
 
                      Route::group(['middleware' => ['auth:api','customer','cors']], function() {
+
+                        Route::get('userscus/id={id}', 'UserController@getidkh');
+
+                        Route::get('userscus/page={page}&limit={size}', 'UserController@getidkh');
                         Route::get("/order/user={id}&page={page}&limit={size}","OrderController@indexuser");    
                         Route::get("/cart/page={page}&limit={size}","CartController@indexid");
                         Route::post("/cart","CartController@insert");
@@ -136,8 +144,7 @@ Route::group(['middleware' => ['auth:api','employee','cors']], function() {
                         Route::get("/total/{id}","CartController@gettotal"); 
                                            });
 
-
-                                           Route::group(['middleware' => ['auth:api','employee'||'customer'||'admin','cors']], function() {    
-                                                Route::get('user', 'AuthController@user');
-                                                Route::get('logout', 'AuthController@logout');
+                        Route::group(['middleware' => ['auth:api','employee'||'customer'||'admin','cors']], function() {    
+                        Route::get('user', 'AuthController@user');
+                        Route::get('logout', 'AuthController@logout');
                                                              });
