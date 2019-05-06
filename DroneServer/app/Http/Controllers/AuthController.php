@@ -81,19 +81,20 @@ $validator = Validator::make($input, [
 ]);
 
 if($validator->fails()){
-  //  return $this->sendError('Validation Error.', $validator->errors());   
+     
     return response()->json([
-        'message' => 'Error created user!']);    
+        'message' => 'Error created user!']); 
+      
 }
 
 
 {
     $user = User::create([
-      'ho_ten'     => $request['ho_ten'],
+     // 'ho_ten'     => $request['ho_ten'],
       'email'    => $request['email'],
       'password' => bcrypt($request['password']),
-      'so_dien_thoai'=> $request['so_dien_thoai'],
-      'dia_chi'=> $request['dia_chi'],
+     // 'so_dien_thoai'=> $request['so_dien_thoai'],
+     // 'dia_chi'=> $request['dia_chi'],
       'vai_tro_id'=> '3',
     ]);
    
