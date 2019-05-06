@@ -71,10 +71,10 @@ class AuthController extends Controller
 $input = $request->all();
 
 $validator = Validator::make($input, [
-    'ho_ten' => 'required|string',
+   // 'ho_ten' => 'required|string',
 	'email' => 'required|string|email|unique:nguoi_dung',
     'password' => 'required|between:8,255|confirmed',
-    'so_dien_thoai' => 'required|string',
+    //'so_dien_thoai' => 'required|string',
     'dia_chi' => 'required|string',
 	'password_confirmation' => 'required ',
        
