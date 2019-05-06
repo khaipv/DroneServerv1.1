@@ -75,7 +75,7 @@ $validator = Validator::make($input, [
 	'email' => 'required|string|email|unique:nguoi_dung',
     'password' => 'required|between:8,255|confirmed',
     //'so_dien_thoai' => 'required|string',
-    'dia_chi' => 'required|string',
+    //'dia_chi' => 'required|string',
 	'password_confirmation' => 'required ',
        
 ]);
