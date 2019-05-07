@@ -90,7 +90,7 @@ if($validator->fails()){
 }
 
 
-{
+else {
     $user = User::create([
      // 'ho_ten'     => $request['ho_ten'],
       'email'    => $request['email'],
