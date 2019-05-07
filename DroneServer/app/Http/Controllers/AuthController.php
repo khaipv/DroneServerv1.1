@@ -82,8 +82,10 @@ $validator = Validator::make($input, [
 
 if($validator->fails()){
      
+    // return response()->json([
+    //     'message' => 'Error created user!']); 
     return response()->json([
-        'message' => 'Error created user!']); 
+        'message' => $validator->errors()]); 
       
 }
 
