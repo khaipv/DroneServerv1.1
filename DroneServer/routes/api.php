@@ -48,11 +48,7 @@ Route::post('login', 'AuthController@login')->middleware('cors');;
 
 
 Route::group(['middleware' => ['auth:api', 'admin','cors']], function() {
-        Route::get('user&role={id}&page={page}&limit={size}', 'UserController@indexrole');
-        Route::get('logout', 'AuthController@logout');
-        Route::post("/product","ProductController@insert");
-        Route::put('/product/{id}',"ProductController@update");
-        Route::delete('/product/{id}', "ProductController@delete");  
+        Route::get('user&role={id}&page={page}&limit={size}', 'UserController@indexrole');  
         Route::post("/store","StoreController@insert");
         Route::put('/store/{id}',"StoreController@update");
         Route::delete('/store/{id}', "StoreController@delete");
@@ -65,15 +61,6 @@ Route::group(['middleware' => ['auth:api', 'admin','cors']], function() {
         Route::delete('/catagory/{id}', "CatagoryController@delete");
         Route::get('users/id={id}', 'UserController@getiduser');
         Route::get('users/page={page}&limit={size}', 'UserController@index');
-      
-         });
-
-
-Route::group(['middleware' => ['auth:api','employee','cors']], function() {   
-        Route::get('userscus/id={id}', 'UserController@getidkh');
-
-        Route::get('userscus/page={page}&limit={size}', 'UserController@indexwithoutpassncc');
-       
         Route::get("/catagory/page={page}&limit={size}","CatagoryController@index"); 
         Route::get("/order/user={id}&page={page}&limit={size}","OrderController@indexuser");
         Route::get("/order/date={date}&page={page}&limit={size}","OrderController@indexdateorder");
@@ -83,16 +70,10 @@ Route::group(['middleware' => ['auth:api','employee','cors']], function() {
         Route::get('user2', 'UserController@indexwithoutemail');
         Route::get('user3', 'UserController@indexwithout2');
         Route::get('user4', 'UserController@indexwithout3');
-        Route::post("/product","ProductController@insert");
-        Route::put('/product/{id}',"ProductController@update");            
-        Route::get('logout', 'AuthController@logout');
-        Route::delete('/product/{id}', "ProductController@delete");
+     
         Route::post("/store","StoreController@insert");
         Route::put('/store/{id}',"StoreController@update");
         Route::delete('/store/{id}', "StoreController@delete");
-        Route::post("/catagory","CatagoryController@insert");
-        Route::put('/catagory/{id}',"CatagoryController@update");
-        Route::delete('/catagory/{id}', "CatagoryController@delete");
         Route::delete("/order/{id}","OrderController@delete");   
         Route::post("/test","TestController@insert");
         Route::get("/roleid/page={page}&limit={size}","RoleController@indexid");
@@ -111,6 +92,16 @@ Route::group(['middleware' => ['auth:api','employee','cors']], function() {
         Route::get("/order/page={page}&limit={size}","OrderController@index");   
         Route::get("/storef/page={page}&limit={size}","StoreController@index");
         Route::get("/cartf/page={page}&limit={size}","CartController@index");
+         });
+
+
+Route::group(['middleware' => ['auth:api','employee','cors']], function() {   
+        Route::get('userscus/id={id}', 'UserController@getidkh');
+
+        Route::get('userscus/page={page}&limit={size}', 'UserController@indexwithoutpassncc');
+       
+      
+       
                      });
 
                  
@@ -150,3 +141,9 @@ Route::group(['middleware' => ['auth:api','employee','cors']], function() {
                         Route::get('user', 'AuthController@user');
                         Route::get('logout', 'AuthController@logout');
                                                              });
+
+                                                             Route::group(['middleware' => ['auth:api','employee'||'admin','cors']], function() {    
+                                                                Route::post("/product","ProductController@insert");
+                                                                Route::put('/product/{id}',"ProductController@update");            
+                                                                Route::delete('/product/{id}', "ProductController@delete");
+                                                                                                     });
