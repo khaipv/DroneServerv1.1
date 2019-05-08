@@ -999,5 +999,20 @@ class ProductController extends BaseController
 
 
 
+    public function idsp($id)
+    {      
+     $users = Product::findOrFail($id);
 
+       
+     if(($users!==null))
+     {
+        $result = $users->nha_cung_cap_id;
+       return response()->json(['id_sup'=>$result]);
+     }
+    else
+     {
+       return response()->json(['message'=>'Product finded error.']);
+     }  
+
+}
 }

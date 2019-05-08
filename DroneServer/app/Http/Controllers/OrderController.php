@@ -504,6 +504,7 @@ class OrderController extends BaseController
   $result['data']=$order['data'];
   if($result['data']==!null)
   {
+     
   return $this->sendResponse($result, 'OrderDetails retrieved successfully.');   
   }
   else
@@ -773,4 +774,6 @@ class OrderController extends BaseController
     }
     }
 
+
+    
 }

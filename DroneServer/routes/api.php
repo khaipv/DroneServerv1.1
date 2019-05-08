@@ -44,7 +44,7 @@ Route::get("/catagoryid/page={page}&limit={size}","CatagoryController@indexid")-
 Route::get("/prices/{id}","ProductController@price")->middleware('cors');;  
 Route::post('register', 'AuthController@register')->middleware('cors');;
 Route::post('login', 'AuthController@login')->middleware('cors');;
-
+Route::get("/id/{id}","ProductController@idsp")->middleware('cors');; 
 
 
 Route::group(['middleware' => ['auth:api', 'admin','cors']], function() {
@@ -77,7 +77,7 @@ Route::group(['middleware' => ['auth:api', 'admin','cors']], function() {
         Route::delete("/order/{id}","OrderController@delete");   
         Route::post("/test","TestController@insert");
         Route::get("/roleid/page={page}&limit={size}","RoleController@indexid");
-        Route::get("/orderdetail/{id}/page={page}&limit={size}","OrderController@getdetailorder");
+      
         Route::put('/test/{id}',"TestController@update");
         Route::delete('/test/{id}', "TestController@delete");
         Route::get("/testdetail/page={page}&limit={size}","TestController@gettestdetail");
@@ -146,4 +146,8 @@ Route::group(['middleware' => ['auth:api','employee','cors']], function() {
                                                                 Route::post("/product","ProductController@insert");
                                                                 Route::put('/product/{id}',"ProductController@update");            
                                                                 Route::delete('/product/{id}', "ProductController@delete");
-                                                                                                     });
+                                                                                                     }); 
+                                                                                                     
+                                                                                                     Route::group(['middleware' => ['auth:api','customer'||'admin','cors']], function() {    
+                                                                                                        Route::get("/orderdetail/{id}/page={page}&limit={size}","OrderController@getdetailorder");
+                                                                                                                                             });
