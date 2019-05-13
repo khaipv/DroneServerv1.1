@@ -336,16 +336,29 @@ class UserController extends BaseController
      * }     
      */
     public function indexrole($id,$page,$limit)
-    {      
+    {  
+      
+
         Paginator::currentPageResolver(function() use ($page) {
             return $page;
         });
-     $users = User::where('vai_tro_id',$id)->paginate($limit); 
+     $users = User::where('vai_tro_id',$id)->paginate($limit);
+     
+     $users->each(function ($item) {
+  
+      $item->setHidden(['id','password','vai_tro_id'])->setVisible(['ho_ten','email','so_dien_thoai','dia_chi']);
+     
+  }); 
+  
      $user = $users->toArray();
      $result['total'] = $users->total();
      $result['page'] = $users->currentPage();
      $result['pageSize'] = $users->perPage();
-     $result['data']=$user['data'];
+     
+
+   
+    $result['data']=$user['data'];
+
      if($result['data']==!null)
      {
       return $this->sendResponse($result, 'Users retrieved successfully.'); 
@@ -453,6 +466,7 @@ class UserController extends BaseController
       
        if(($user!==null)&&($user->vai_tro_id==1))
        {
+        $user->setHidden(['id','password','vai_tro_id'])->setVisible(['ho_ten','email','so_dien_thoai','dia_chi']);
          return response()->json(['userdetail'=>$user]);
        }
       else
@@ -474,6 +488,7 @@ class UserController extends BaseController
       
        if(($user!==null)&&($user->vai_tro_id==3))
        {
+        $user->setHidden(['id','password','vai_tro_id'])->setVisible(['ho_ten','email','so_dien_thoai','dia_chi']);
          return response()->json(['userdetail'=>$user]);
        }
       else
@@ -488,14 +503,13 @@ class UserController extends BaseController
         Paginator::currentPageResolver(function() use ($page) {
             return $page;
         });
-     $users = User::paginate($limit);
+     $count = User::where('vai_tro_id', 1)->count();
+     $users = User::where('vai_tro_id', 1)->paginate($limit);
      $user1 = $users->getCollection();
-     $count = count( $user1);
      $user1->each(function ($item) {
-       if($item->vai_tro_id==1)
-       {
-        $item->setHidden(['id','password'])->setVisible(['ho_ten','email','so_dien_thoai','dia_chi','vai_tro_id']);
-       }
+      
+        $item->setHidden(['id','password','vai_tro_id'])->setVisible(['ho_ten','email','so_dien_thoai','dia_chi']);
+       
     }); 
      $result['total'] = $count;
      $result['page'] = $page;
@@ -516,14 +530,12 @@ class UserController extends BaseController
         Paginator::currentPageResolver(function() use ($page) {
             return $page;
         });
-     $users = User::paginate($limit);
+     $count = User::where('vai_tro_id', 3)->count();
+     $users = User::where('vai_tro_id', 3)->paginate($limit);
      $user1 = $users->getCollection();
-     $count = count( $user1);
      $user1->each(function ($item) {
-       if($item->vai_tro_id==3)
-       {
-        $item->setHidden(['id','password'])->setVisible(['ho_ten','email','so_dien_thoai','dia_chi','vai_tro_id']);
-       }
+        $item->setHidden(['id','password','vai_tro_id'])->setVisible(['ho_ten','email','so_dien_thoai','dia_chi','vai_tro_id']);
+       
     }); 
      $result['total'] = $count;
      $result['page'] = $page;
