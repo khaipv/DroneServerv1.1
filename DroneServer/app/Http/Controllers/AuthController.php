@@ -71,19 +71,15 @@ class AuthController extends Controller
 $input = $request->all();
 
 $validator = Validator::make($input, [
-   // 'ho_ten' => 'required|string',
+ 
 	'email' => 'required|string|email|unique:nguoi_dung',
     'password' => 'required|between:8,255|confirmed',
-    //'so_dien_thoai' => 'required|string',
-    //'dia_chi' => 'required|string',
 	'password_confirmation' => 'required ',
        
 ]);
 
 if($validator->fails()){
      
-    // return response()->json([
-    //     'message' => 'Error created user!']); 
     return response()->json([
         'message' => $validator->errors()]); 
       
@@ -92,11 +88,8 @@ if($validator->fails()){
 
 else {
     $user = User::create([
-     // 'ho_ten'     => $request['ho_ten'],
       'email'    => $request['email'],
       'password' => bcrypt($request['password']),
-     // 'so_dien_thoai'=> $request['so_dien_thoai'],
-     // 'dia_chi'=> $request['dia_chi'],
       'vai_tro_id'=> '3',
     ]);
    

@@ -563,6 +563,7 @@ class CartController extends BaseController
      * @response {
      *  "total": "....."
      * }
+     * 
      */
 
      public function gettotal($id)

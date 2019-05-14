@@ -346,7 +346,7 @@ class UserController extends BaseController
      
      $users->each(function ($item) {
   
-      $item->setHidden(['id','password','vai_tro_id'])->setVisible(['ho_ten','email','so_dien_thoai','dia_chi']);
+      $item->setHidden(['password','vai_tro_id'])->setVisible(['id','ho_ten','email','so_dien_thoai','dia_chi']);
      
   }); 
   
@@ -488,7 +488,7 @@ class UserController extends BaseController
       
        if(($user!==null)&&($user->vai_tro_id==3))
        {
-        $user->setHidden(['id','password','vai_tro_id'])->setVisible(['ho_ten','email','so_dien_thoai','dia_chi']);
+        $user->setHidden(['id','password'])->setVisible(['ho_ten','email','so_dien_thoai','dia_chi','vai_tro_id']);
          return response()->json(['userdetail'=>$user]);
        }
       else
@@ -503,12 +503,12 @@ class UserController extends BaseController
         Paginator::currentPageResolver(function() use ($page) {
             return $page;
         });
-     $count = User::where('vai_tro_id', 1)->count();
-     $users = User::where('vai_tro_id', 1)->paginate($limit);
+     $count = User::where('vai_tro_id', 3)->count();
+     $users = User::where('vai_tro_id', 3)->paginate($limit);
      $user1 = $users->getCollection();
      $user1->each(function ($item) {
       
-        $item->setHidden(['id','password','vai_tro_id'])->setVisible(['ho_ten','email','so_dien_thoai','dia_chi']);
+        $item->setHidden(['password'])->setVisible(['id','ho_ten','email','so_dien_thoai','dia_chi','vai_tro_id']);
        
     }); 
      $result['total'] = $count;
@@ -530,11 +530,11 @@ class UserController extends BaseController
         Paginator::currentPageResolver(function() use ($page) {
             return $page;
         });
-     $count = User::where('vai_tro_id', 3)->count();
-     $users = User::where('vai_tro_id', 3)->paginate($limit);
+     $count = User::where('vai_tro_id', 1)->count();
+     $users = User::where('vai_tro_id', 1)->paginate($limit);
      $user1 = $users->getCollection();
      $user1->each(function ($item) {
-        $item->setHidden(['id','password','vai_tro_id'])->setVisible(['ho_ten','email','so_dien_thoai','dia_chi','vai_tro_id']);
+        $item->setHidden(['password'])->setVisible(['id','ho_ten','email','so_dien_thoai','dia_chi','vai_tro_id']);
        
     }); 
      $result['total'] = $count;
