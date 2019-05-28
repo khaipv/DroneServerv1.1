@@ -397,20 +397,43 @@ class UserController extends BaseController
      */
     public function update(Request $request, $id)
     {
-       $user = new User();
-       $user = User::findOrFail($id);
-      
-       if( $user->update($request->all()))
-       {
-         return response()->json(['sucess'=>'user updated sucessfully.']);
-       }
-      else
-       {
-         return response()->json(['sucess'=>'test updated error.']);
-       }  
+        $user = User::findOrFail($id);
+        if($user->update($request->all()))
+        {
+          return response()->json(['message'=>'User updated succes.']);
+        }
+        else
+        {
+          return response()->json(['message'=>'User updated error.']);
+        }
+       
+     
+
       
     } 
       
+
+    /**
+     * Update old user 
+     * @bodyParam $request Request information of user update
+     * @bodyParam bigInt $id of user
+     */
+    public function update1(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        if($user->update($request->all()))
+        {
+          return response()->json(['message'=>'Role-user updated sucessfully.']);
+        }
+        else
+        {
+          return response()->json(['message'=>'Role-user updated error.']);
+        }
+       
+     
+
+      
+    } 
    /**
      * Delete user 
      * @bodyParam $id bigInt of user update 
